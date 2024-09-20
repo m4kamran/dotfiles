@@ -17,10 +17,10 @@ M.base46 = {
 M.term = {
   float = {
     relative = "editor",
-    row = 0.2,
-    col = 0.15,
-    width = 0.7,
-    height = 0.6,
+    row = 0.1,
+    col = 0.1,
+    width = 0.8,
+    height = 0.7,
     border = "single",
   },
 

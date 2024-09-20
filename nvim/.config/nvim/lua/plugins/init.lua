@@ -53,17 +53,20 @@ return {
   },
 
   {
-    "brenton-leighton/multiple-cursors.nvim",
-    version = "*", -- Use the latest tagged version
-    opts = {},     -- This causes the plugin setup function to be called
-    keys = {
-      { "<C-j>",    "<Cmd>MultipleCursorsAddDown<CR>",    mode = { "n", "x" },      desc = "Add cursor and move down" },
-      { "<C-k>",    "<Cmd>MultipleCursorsAddUp<CR>",      mode = { "n", "x" },      desc = "Add cursor and move up" },
+    "princejoogie/dir-telescope.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("dir-telescope").setup({
+        hidden = true,
+        no_ignore = false,
+        show_preview = true,
+        follow_symlinks = false,
+      })
+    end,
+  },
 
-      { "<C-Up>",   "<Cmd>MultipleCursorsAddUp<CR>",      mode = { "n", "i", "x" }, desc = "Add cursor and move up" },
-      { "<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>",    mode = { "n", "i", "x" }, desc = "Add cursor and move down" },
-
-      { "<C-d>",    "<Cmd>MultipleCursorsAddMatches<CR>", mode = { "n", "x" },      desc = "Add cursors to cword" },
-    },
+  {
+    "mg979/vim-visual-multi",
+    event = "VeryLazy",
   },
 }
