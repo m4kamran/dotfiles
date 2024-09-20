@@ -1,5 +1,7 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
+-- Set snippets path
+vim.g.vscode_snippets_path = "./snippets/html.json"
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -31,13 +33,12 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "options"
 require "nvchad.autocmds"
--- require('leap').create_default_mappings()
 
 vim.schedule(function()
   require "mappings"
 end)
 
-vim.api.nvim_create_autocmd({"FocusGained", "BufEnter"}, {
-    pattern = "*",
-    command = "checktime"
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  pattern = "*",
+  command = "checktime"
 })
