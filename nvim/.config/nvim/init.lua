@@ -33,12 +33,8 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "options"
 require "nvchad.autocmds"
+require "configs.autocmds"
 
 vim.schedule(function()
   require "mappings"
 end)
-
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
-  pattern = "*",
-  command = "checktime"
-})

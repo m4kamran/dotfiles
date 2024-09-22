@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -25,7 +25,7 @@ return {
         },
       },
       suggestion = {
-        auto_trigger = true,
+        auto_trigger = false,
         keymap = {
           accept = "<C-l>",
         },
@@ -34,20 +34,40 @@ return {
   },
 
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {},
+    lazy = false,
+  },
+
+  {
     "nvim-tree/nvim-tree.lua",
     opts = {
       view = {
         width = 40,
         adaptive_size = true,
-      }
-    }
+      },
+    },
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "vim", "lua", "vimdoc", "html", "css", "angular", "typescript", "json", "javascript"
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "angular",
+        "typescript",
+        "json",
+        "javascript",
       },
     },
   },
@@ -56,17 +76,18 @@ return {
     "princejoogie/dir-telescope.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
-      require("dir-telescope").setup({
+      require("dir-telescope").setup {
         hidden = true,
         no_ignore = false,
         show_preview = true,
         follow_symlinks = false,
-      })
+      }
     end,
   },
 
   {
-    "mg979/vim-visual-multi",
-    event = "VeryLazy",
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 }

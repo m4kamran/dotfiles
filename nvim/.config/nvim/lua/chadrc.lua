@@ -23,7 +23,6 @@ M.term = {
     height = 0.7,
     border = "single",
   },
-
 }
 
 M.ui = {
@@ -33,7 +32,7 @@ M.ui = {
     -- default, round, block, and arrow are supported only by the default statusline theme.
     -- the round and block separators are also supported by the minimal theme.
     separator_style = "arrow", -- default, round, block or arrow
-  }
+  },
 }
 
 return M
