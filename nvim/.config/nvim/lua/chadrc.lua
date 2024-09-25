@@ -23,6 +23,11 @@ M.term = {
     height = 0.7,
     border = "single",
   },
+  winopts = { scl = "no" },
+  sizes = {
+    sp = 0.4,
+    vsp = 0.4,
+  },
 }
 
 M.ui = {

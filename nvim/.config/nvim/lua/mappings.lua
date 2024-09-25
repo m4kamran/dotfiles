@@ -46,10 +46,19 @@ vim.g.VM_maps = {
   ["Remove Region"] = "<C-p>", -- Optional: Ctrl + P to remove the current region
 }
 
--- Open CopilotChat
-map("n", "<leader>cc", "<cmd>CopilotChatToggle<cr>", { desc = "open CopilotChat" })
-
 -- Open floating terminal
 map({ "n", "t" }, "<A-i>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm", cmd = "lazygit" }
 end, { desc = "Terminal Toggle Floating term" })
+
+-- Multi cursors
+map("n", "<leader>d", "*``cgn", { desc = "search forward and change next occurrence" })
+map("n", "<leader>D", "#``cgN", { desc = "Search backward and change previous occurrence" })
+
+-- Quit
+map("n", "<leader>q", ":qa<CR>", { desc = "close all windows and exit Neovim" })
+
+-- Git signs
+map("n", "<leader>gs", "<cmd>Gitsigns toggle_signs<cr>", { desc = "toggle git signs" })
+map("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "preview git hunk" })
+map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "reset git hunk" })

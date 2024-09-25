@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
@@ -25,7 +25,7 @@ return {
         },
       },
       suggestion = {
-        auto_trigger = false,
+        auto_trigger = true,
         keymap = {
           accept = "<C-l>",
         },
@@ -34,16 +34,35 @@ return {
   },
 
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    "sindrets/diffview.nvim",
+    opts = {
+      file_panel = {
+        listing_style = "list",
+      },
     },
-    build = "make tiktoken", -- Only on MacOS or Linux
+  },
+
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+    },
     opts = {},
     lazy = false,
   },
+
+  -- {
+  --   "CopilotC-Nvim/CopilotChat.nvim",
+  --   branch = "canary",
+  --   dependencies = {
+  --     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+  --     { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+  --   },
+  --   build = "make tiktoken", -- Only on MacOS or Linux
+  --   opts = {},
+  --   lazy = false,
+  -- },
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -70,6 +89,7 @@ return {
         "javascript",
       },
     },
+    lazy = false,
   },
 
   {
@@ -89,5 +109,16 @@ return {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
   },
 }
