@@ -38,31 +38,19 @@ return {
     opts = {
       file_panel = {
         listing_style = "list",
+
+        win_config = {
+          width = 50,
+        },
       },
     },
   },
 
   {
     "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-    },
     opts = {},
     lazy = false,
   },
-
-  -- {
-  --   "CopilotC-Nvim/CopilotChat.nvim",
-  --   branch = "canary",
-  --   dependencies = {
-  --     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-  --     { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-  --   },
-  --   build = "make tiktoken", -- Only on MacOS or Linux
-  --   opts = {},
-  --   lazy = false,
-  -- },
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -89,7 +77,6 @@ return {
         "javascript",
       },
     },
-    lazy = false,
   },
 
   {

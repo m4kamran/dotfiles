@@ -107,5 +107,3 @@ typescript_tools.setup {
     },
   },
 }
-
-return config

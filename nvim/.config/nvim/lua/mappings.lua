@@ -10,8 +10,8 @@ map("i", "jk", "<ESC>")
 map({ "n", "i", "v" }, "<c-s>", "<cmd> w <cr>")
 
 -- lsp
-map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "show hover" })
-map("n", "ga", "<cmd>telescope vim.lsp.buf.code_action theme=dropdown<cr>", { desc = "open code actions in telescope" })
+map("n", "gh", vim.diagnostic.open_float, { desc = "Show diagnostics" })
+map("n", "ga", vim.lsp.buf.hover, { desc = "Show hover" })
 
 -- indentation
 map("v", "<", "<gv", { desc = "indent left " })
@@ -48,7 +48,7 @@ vim.g.VM_maps = {
 
 -- Open floating terminal
 map({ "n", "t" }, "<A-i>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm", cmd = "lazygit" }
+  require("nvchad.term").toggle { pos = "float", id = "floatTerm", cmd = "zsh" }
 end, { desc = "Terminal Toggle Floating term" })
 
 -- Multi cursors
@@ -62,3 +62,7 @@ map("n", "<leader>q", ":qa<CR>", { desc = "close all windows and exit Neovim" })
 map("n", "<leader>gs", "<cmd>Gitsigns toggle_signs<cr>", { desc = "toggle git signs" })
 map("n", "<leader>gh", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "preview git hunk" })
 map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "reset git hunk" })
+map("n", "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", { desc = "reset git buffer" })
+
+-- Neogit
+map("n", "<leader>gg", "<cmd>Neogit kind=vsplit<cr>", { desc = "open neogit" })
