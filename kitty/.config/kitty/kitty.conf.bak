@@ -193,7 +193,7 @@ shell_integration enabled
 term xterm-256color
 
 # border coloor
-# active_border_color none
+active_border_color none
 
 
 
@@ -282,7 +282,7 @@ map ctrl+a>shift+d     debug_config
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Dark One Nuanced
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -296,12 +296,3 @@ map f3 kitten hints --program '*'
 # https://github.com/console-rs/console/pull/84
 # map double ctrl+a to ctrl+a (home)
 map ctrl+a>ctrl+a send_text all \x01
-
-
-# tab bar
-tab_bar_min_tabs            1
-tab_bar_edge                bottom
-tab_bar_style               powerline
-tab_powerline_style         slanted
-tab_title_template          {title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}
-

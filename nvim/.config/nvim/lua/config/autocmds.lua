@@ -1,0 +1,12 @@
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+
+-- Detect if Diffview is active before exiting as presistance get restore it
+-- vim.api.nvim_create_autocmd("VimLeavePre", {
+--   callback = function()
+--     if package.loaded["diffview"] then
+--       vim.cmd("tabclose")
+--     end
+--   end,
+-- })
