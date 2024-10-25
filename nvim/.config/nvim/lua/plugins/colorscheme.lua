@@ -70,7 +70,7 @@ return {
         keywordStyle = { italic = true },
         statementStyle = { bold = true },
         typeStyle = {},
-        transparent = false, -- do not set background color
+        transparent = true, -- do not set background color
         dimInactive = false, -- dim inactive window `:h hl-NormalNC`
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
         overrides = function(colors) -- add/modify highlights
@@ -91,10 +91,10 @@ return {
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
             TelescopeTitle = { fg = theme.ui.special, bold = true },
-            TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-            TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-            TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+            TelescopePromptNormal = { bg = theme.ui.bg_dim },
+            TelescopePromptBorder = { fg = theme.ui.bg_dim, bg = theme.ui.bg_dim },
+            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_dim },
+            TelescopeResultsBorder = { fg = theme.ui.bg_dim, bg = theme.ui.bg_dim },
             TelescopePreviewNormal = { bg = theme.ui.bg_dim },
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 
@@ -139,8 +139,8 @@ return {
         transparent_background = true,
         custom_highlights = function(c)
           return {
-            NeoTreeDirectoryName = { fg = c.subtext1 },
-            NeoTreeDirectoryIcon = { fg = c.lavender },
+            NeoTreeDirectoryName = { fg = c.lavender },
+            NeoTreeDirectoryIcon = { fg = c.yellow },
           }
         end,
       })
@@ -372,65 +372,51 @@ return {
     "sho-87/kanagawa-paper.nvim",
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = {
+      transparent = false,
+      overrides = function(colors)
+        local theme = colors.theme
+        return {
+          -- NormalFloat = { bg = "none" },
+          -- FloatBorder = { bg = "none" },
+          -- FloatTitle = { bg = "none" },
+          --
+          -- -- Save a hlgroup with dark background and dimmed foreground
+          -- -- so that you can use it where you still want darker windows.
+          -- -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+          -- NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+          --
+          -- -- Popular plugins that open floats will link to NormalFloat by default;
+          -- -- set their background accordingly if you wish to keep them dark and borderless
+          -- LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
+          -- MasonNormal = { bg = "none", fg = theme.ui.fg_dim },
+
+          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+          PmenuSbar = { bg = theme.ui.bg_m1 },
+          PmenuThumb = { bg = theme.ui.bg_p2 },
+
+          NeoTreeDirectoryIcon = { fg = theme.ui.fg_dim },
+
+          TelescopeResultsNormal = { bg = "None" },
+        }
+      end,
+    },
+  },
+
+  {
+    "aktersnurra/no-clown-fiesta.nvim",
+    priority = 1000,
     config = function()
-      require("kanagawa-paper").setup({
-        transparent = true,
-        undercurl = true,
-        gutter = false,
-        dimInactive = false, -- disabled when transparent
-        terminalColors = true,
-        commentStyle = { italic = true },
-        functionStyle = { italic = false },
-        keywordStyle = { italic = false, bold = false },
-        statementStyle = { italic = false, bold = false },
-        typeStyle = { italic = false },
-
-        colors = {
-          palette = {
-            -- change all usages of these color names
-          },
-          theme = {
-            -- change specific usages for a certain theme
-            ui = {
-              float = {
-                bg = "none",
-              },
-            },
-          },
-        },
-
-        overrides = function(colors)
-          local theme = colors.theme
-          return {
-            NormalFloat = { bg = "none" },
-            FloatBorder = { bg = "none" },
-            FloatTitle = { bg = "none" },
-
-            -- Save a hlgroup with dark background and dimmed foreground
-            -- so that you can use it where you still want darker windows.
-            -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-
-            -- Popular plugins that open floats will link to NormalFloat by default;
-            -- set their background accordingly if you wish to keep them dark and borderless
-            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-
-            Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
-            PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-            PmenuSbar = { bg = theme.ui.bg_m1 },
-            PmenuThumb = { bg = theme.ui.bg_p2 },
-          }
-        end,
-      })
+      local plugin = require("no-clown-fiesta")
+      plugin.setup({})
     end,
   },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "kanagawa-dragon",
     },
   },
 }

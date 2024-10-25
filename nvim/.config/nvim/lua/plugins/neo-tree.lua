@@ -4,7 +4,7 @@ return {
     opts = {
       window = {
         position = "left",
-        width = 50,
+        width = 40,
       },
       default_component_configs = {
         indent = {

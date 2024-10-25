@@ -6,8 +6,8 @@ return {
       win = {
         type = "split", -- split window
         relative = "win", -- relative to current window
-        position = "right", -- right side
-        size = 0.5, -- 50% of the window
+        position = "bottom", -- right side
+        size = 0.3,
       },
     },
   },
