@@ -17,28 +17,30 @@ vim.keymap.set("n", "<C-/>", function()
 end, { desc = "Term with border" })
 
 -- Remove lazyvim keymaps
--- vim.keymap.del("n", "<leader>cd")
--- vim.keymap.del("n", "<leader>gL")
--- vim.keymap.del("n", "<leader>gf")
--- vim.keymap.del("n", "<leader>gG")
--- vim.keymap.del("n", "<leader>gg")
--- vim.keymap.del("n", "<leader>ge")
--- vim.keymap.del("n", "<leader>gs")
+vim.keymap.del("n", "<leader>cd")
+vim.keymap.del("n", "<leader>gL")
+vim.keymap.del("n", "<leader>gf")
+vim.keymap.del("n", "<leader>gG")
+vim.keymap.del("n", "<leader>gg")
+vim.keymap.del("n", "<leader>ge")
+vim.keymap.del("n", "<leader>gs")
 
 -- Delete without yanking
 vim.keymap.set("n", "d", '"_d')
 vim.keymap.set("v", "d", '"_d')
 
 -- Neogit
--- vim.keymap.set("n", "<leader>gg", "<cmd>Neogit kind=auto <cr>", { desc = "Neogit" })
--- vim.keymap.set("n", "<leader>gc", "<cmd>Neogit commit <cr>", { desc = "Neogit Commit changes" })
--- vim.keymap.set("n", "<leader>gp", "<cmd>Neogit push<cr>", { desc = "Neogit Push changes" })
--- vim.keymap.set("n", "<leader>gP", "<cmd>Neogit pull<cr>", { desc = "Neogit Pull changes" })
--- vim.keymap.set("n", "<leader>gl", "<cmd>Neogit log <cr>", { desc = "Neogit log" })
--- vim.keymap.set("n", "<leader>gd", "<cmd>Neogit diff <cr>", { desc = "Neogit diff" })
+vim.keymap.set("n", "<leader>gg", "<cmd>Neogit kind=auto<cr>", { desc = "Neogit" })
+vim.keymap.set("n", "<leader>gc", "<cmd>Neogit commit<cr>", { desc = "Neogit Commit changes" })
+vim.keymap.set("n", "<leader>gp", "<cmd>Neogit push<cr>", { desc = "Neogit Push changes" })
+vim.keymap.set("n", "<leader>gP", "<cmd>Neogit pull<cr>", { desc = "Neogit Pull changes" })
+vim.keymap.set("n", "<leader>gl", "<cmd>Neogit log <cr>", { desc = "Neogit log" })
+vim.keymap.set("n", "<leader>gd", "<cmd>Neogit diff <cr>", { desc = "Neogit diff" })
+vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle <cr>", { desc = "Git Blame" })
 
 -- Mini diff
 vim.keymap.set("n", "<leader>gh", "<cmd>lua MiniDiff.toggle_overlay()<cr>", { desc = "Mini diff" })
 
--- DiffView
-vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "DiffView" })
+-- Auto Session
+vim.keymap.set("n", "<leader>qs", "<cmd>SessionSave<cr>", { desc = "Save Session" })
+vim.keymap.set("n", "<leader>qd", "<cmd>SessionDelete<cr>", { desc = "Load Session" })

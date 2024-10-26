@@ -21,11 +21,16 @@ return {
 
   {
     "NeogitOrg/neogit",
-    enabled = false,
+    enabled = true,
   },
 
   {
     "akinsho/bufferline.nvim",
+    enabled = false,
+  },
+
+  {
+    "folke/persistence.nvim",
     enabled = false,
   },
 }
