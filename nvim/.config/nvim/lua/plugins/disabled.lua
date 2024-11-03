@@ -26,11 +26,16 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    enabled = false,
+    enabled = true,
   },
 
   {
     "folke/persistence.nvim",
+    enabled = false,
+  },
+
+  {
+    "nvimdev/dashboard-nvim",
     enabled = false,
   },
 }
