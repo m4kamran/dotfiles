@@ -10,32 +10,17 @@ return {
   },
 
   {
-    "lewis6991/gitsigns.nvim",
-    enabled = false,
-  },
-
-  {
     "mfussenegger/nvim-lint",
     enabled = false,
   },
 
   {
-    "NeogitOrg/neogit",
-    enabled = true,
-  },
-
-  {
     "akinsho/bufferline.nvim",
-    enabled = true,
-  },
-
-  {
-    "folke/persistence.nvim",
     enabled = false,
   },
 
   {
-    "nvimdev/dashboard-nvim",
+    "echasnovski/mini.diff",
     enabled = false,
   },
 }

@@ -5,7 +5,7 @@ return {
       diagnostics = {
         virtual_text = false,
         virtual_lines = { only_current_line = true },
-        signs = false,
+        signs = true,
       },
 
       inlay_hints = { enabled = false },

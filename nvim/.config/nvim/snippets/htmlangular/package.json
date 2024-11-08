@@ -8,7 +8,7 @@
     "snippets": [
       {
         "language": "htmlangular",
-        "path": "./htmlangular.json"
+        "path": "./html.json"
       }
     ]
   }

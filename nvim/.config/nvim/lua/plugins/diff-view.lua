@@ -6,9 +6,11 @@ return {
         keymaps = {
           view = {
             { "n", "q", "<cmd>tabclose <cr>", { desc = "Close diffview" } },
+            { "n", "<leader>q", "<cmd>tabclose <cr>", { desc = "Close diffview" } },
           },
           file_panel = {
             { "n", "q", "<cmd>tabclose <cr>", { desc = "Close diffview" } },
+            { "n", "<leader>q", "<cmd>tabclose <cr>", { desc = "Close diffview" } },
           },
         },
 

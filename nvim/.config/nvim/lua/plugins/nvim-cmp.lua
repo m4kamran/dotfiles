@@ -16,6 +16,11 @@ return {
           priority = 1000,
         },
         {
+          name = "copilot",
+          group_index = 1,
+          priority = 600,
+        },
+        {
           group_index = 1,
           name = "nvim_lsp",
           option = {},

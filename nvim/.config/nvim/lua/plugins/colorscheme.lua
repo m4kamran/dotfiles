@@ -104,6 +104,9 @@ return {
             PmenuThumb = { bg = theme.ui.bg_p2 },
 
             NeoTreeDirectoryIcon = { fg = colors.palette.oldWhite },
+            RenderMarkdownCode = { bg = "none", fg = "none" },
+            RenderMarkdownCodeInline = { bg = "none", fg = "none" },
+            ColorColumn = { bg = "#000000" },
           }
         end,
         theme = "wave", -- Load "wave" theme when 'background' option is not set
@@ -203,7 +206,14 @@ return {
   {
     "mellow-theme/mellow.nvim",
     config = function()
-      vim.g.mellow_transparent = true
+      local c = require("mellow.colors")["dark"]
+      vim.g.mellow_transparent = false
+
+      vim.g.mellow_highlight_overrides = {
+        NeoTreeDirectoryName = { fg = c.white },
+        -- DiffAdd = { fg = "#000000", bg = c.green },
+        -- DiffDelete = { fg = "#000000", bg = c.red },
+      }
     end,
   },
 
@@ -420,7 +430,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa-dragon",
+      colorscheme = "mellow",
     },
   },
 }

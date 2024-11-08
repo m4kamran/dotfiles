@@ -1,7 +1,8 @@
 gui:
-  border: "single"
+  border: "hidden"
   nerdFontsVersion: "3"
-  splitDiff: "always"
+  splitDiff: "auto"
+  expandFocusedSidePanel: true
 
 git:
   paging:
