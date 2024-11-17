@@ -61,5 +61,3 @@ theme:
   defaultFgColor:
     - "#e8e8d3" # white from nvim theme
 
-os:
-  editCommand: 'nvim "$(pwd)/{{filename}}"'

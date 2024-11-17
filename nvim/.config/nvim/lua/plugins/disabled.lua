@@ -16,11 +16,6 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    enabled = false,
-  },
-
-  {
-    "echasnovski/mini.diff",
-    enabled = false,
+    enabled = true,
   },
 }

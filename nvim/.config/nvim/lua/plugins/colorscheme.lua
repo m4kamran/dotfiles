@@ -428,6 +428,12 @@ return {
   { "datsfilipe/vesper.nvim" },
 
   {
+    "wtfox/jellybeans.nvim",
+    priority = 1000,
+    opts = {},
+  },
+
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "mellow",

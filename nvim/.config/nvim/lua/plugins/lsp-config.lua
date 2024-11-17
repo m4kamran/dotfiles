@@ -3,8 +3,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
-        virtual_text = false,
-        virtual_lines = { only_current_line = true },
+        virtual_text = true,
+        -- virtual_lines = { only_current_line = true },
         signs = true,
       },
 
