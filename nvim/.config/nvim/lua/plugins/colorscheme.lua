@@ -207,12 +207,34 @@ return {
     "mellow-theme/mellow.nvim",
     config = function()
       local c = require("mellow.colors")["dark"]
-      vim.g.mellow_transparent = false
+      vim.g.mellow_transparent = true
 
       vim.g.mellow_highlight_overrides = {
         NeoTreeDirectoryName = { fg = c.white },
         -- DiffAdd = { fg = "#000000", bg = c.green },
         -- DiffDelete = { fg = "#000000", bg = c.red },
+        NormalFloat = { bg = "#121212" },
+        TelescopePromptNormal = { bg = "#121212" },
+        TelescopePromptBorder = { fg = "#121212", bg = "#121212" },
+        TelescopeResultsNormal = { fg = c.white, bg = "#121212" },
+        TelescopeResultsBorder = { fg = "#121212", bg = "#121212" },
+        TelescopePreviewNormal = { bg = "#121212" },
+        TelescopePreviewBorder = { bg = "#121212", fg = "#121212" },
+
+        DiffAdd = { bg = c.green, fg = c.black },
+        -- DiffChange	Diff mode: Changed line. |diff.txt|
+        DiffChange = { bg = c.blue, fg = c.black },
+        -- DiffDelete	Diff mode: Deleted line. |diff.txt|
+        DiffDelete = { fg = c.black, bg = c.red },
+        -- DiffText	Diff mode: Changed text within a changed line. |diff.txt|
+        DiffText = { bg = c.yellow, fg = c.black },
+
+        -- TelescopePromptNormal = { bg = theme.ui.bg_dim },
+        -- TelescopePromptBorder = { fg = theme.ui.bg_dim, bg = theme.ui.bg_dim },
+        -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_dim },
+        -- TelescopeResultsBorder = { fg = theme.ui.bg_dim, bg = theme.ui.bg_dim },
+        -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+        -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
       }
     end,
   },
@@ -431,6 +453,10 @@ return {
     "wtfox/jellybeans.nvim",
     priority = 1000,
     opts = {},
+  },
+
+  {
+    "oahlen/iceberg.nvim",
   },
 
   {

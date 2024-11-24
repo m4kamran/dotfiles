@@ -5,6 +5,9 @@ return {
     opts_extend = { "spec" },
     opts = {
       preset = "helix",
+      delay = function(ctx)
+        return 0
+      end,
     },
   },
 }
