@@ -5,22 +5,12 @@ return {
   },
 
   {
-    "nvim-lualine/lualine.nvim",
-    enabled = false,
-  },
-
-  {
-    "mfussenegger/nvim-lint",
-    enabled = false,
-  },
-
-  {
     "akinsho/bufferline.nvim",
     enabled = false,
   },
 
   {
-    "folke/which-key.nvim",
+    "rcarriga/nvim-notify",
     enabled = false,
   },
 }

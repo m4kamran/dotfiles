@@ -109,9 +109,9 @@ return {
             ColorColumn = { bg = "#000000" },
           }
         end,
-        theme = "wave", -- Load "wave" theme when 'background' option is not set
+        theme = "dragon", -- Load "wave" theme when 'background' option is not set
         background = { -- map the value of 'background' option to a theme
-          dark = "wave", -- try "dragon" !
+          dark = "dragon", -- try "dragon" !
           light = "lotus",
         },
         colors = {
@@ -177,6 +177,12 @@ return {
             color = lackluster.color.gray4,
             name = "Default",
           },
+        },
+        tweak_background = {
+          normal = "#000000",
+          telescope = "none",
+          menu = lackluster.color.gray3,
+          popup = "default",
         },
       })
     end,
@@ -462,7 +468,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "mellow",
+      colorscheme = "kanagawa-dragon",
     },
   },
 }

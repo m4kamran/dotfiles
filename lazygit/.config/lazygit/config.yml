@@ -7,7 +7,7 @@ gui:
 git:
   paging:
     colorArg: always
-    # pager: delta --dark --paging=never --line-numbers --color-only --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    pager: delta --dark --paging=never --line-numbers --color-only --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     # useConfig: false
 
 theme:

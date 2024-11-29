@@ -4,6 +4,7 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
+      notifier = { enabled = false },
       words = { enabled = false },
       dashboard = {
         preset = {

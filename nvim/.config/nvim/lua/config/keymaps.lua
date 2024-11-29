@@ -13,3 +13,6 @@ vim.keymap.set("v", "d", '"_d')
 
 -- Diff View
 vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
+
+-- Lsp Lines
+vim.keymap.set("", "<Leader>ce", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
