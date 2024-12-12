@@ -10,21 +10,6 @@ return {
 
       inlay_hints = { enabled = false },
       document_highlight = { enabled = false },
-
-      servers = {
-        vtsls = {
-          settings = {
-            typescript = {
-              format = {
-                tabSize = 2,
-                indentSize = 2,
-                baseIndentSize = 2,
-                convertTabsToSpaces = true,
-              },
-            },
-          },
-        },
-      },
     },
   },
 }

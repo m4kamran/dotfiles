@@ -413,7 +413,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      transparent = false,
+      transparent = true,
       overrides = function(colors)
         local theme = colors.theme
         return {
@@ -463,6 +463,16 @@ return {
 
   {
     "oahlen/iceberg.nvim",
+  },
+
+  {
+    "dgox16/oldworld.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+
+  {
+    "Yazeed1s/oh-lucy.nvim",
   },
 
   {

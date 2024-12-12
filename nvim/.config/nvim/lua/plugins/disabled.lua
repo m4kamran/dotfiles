@@ -13,4 +13,14 @@ return {
     "rcarriga/nvim-notify",
     enabled = false,
   },
+
+  {
+    "nvim-neotest/neotest",
+    enabled = false,
+  },
+
+  {
+    "nvim-neotest/neotest-jest",
+    enabled = false,
+  },
 }

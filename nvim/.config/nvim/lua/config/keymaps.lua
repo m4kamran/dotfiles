@@ -4,7 +4,10 @@
 
 -- Terminal with borderr
 vim.keymap.set("n", "<C-/>", function()
-  Snacks.terminal.toggle(nil, { cwd = vim.fn.getcwd() })
+  Snacks.terminal.toggle(nil, { cwd = vim.fn.getcwd(), win = {
+    position = "bottom",
+    width = 0.4,
+  } })
 end, { desc = "Term toggle" })
 
 -- Delete without yanking
@@ -16,3 +19,11 @@ vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" 
 
 -- Lsp Lines
 vim.keymap.set("", "<Leader>ce", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+
+-- Remap macro recording
+-- vim.keymap.set("n", "q", "<nop>", {})
+-- vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
+
+-- Jester
+vim.keymap.set("n", "<leader>tr", "<cmd>lua require('jester').run()<cr>", { desc = "Run Jester" })
+vim.keymap.set("n", "<leader>tt", "<cmd>lua require('jester').run_file()<cr>", { desc = "Run Jester (focused)" })
