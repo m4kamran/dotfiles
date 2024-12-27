@@ -2,7 +2,12 @@ return {
   {
     "saghen/blink.cmp",
     opts = {
-      accept = { auto_brackets = { enabled = false } },
+      completion = {
+        accept = { auto_brackets = { enabled = false } },
+      },
+      sources = {
+        default = { "snippets", "lsp", "path", "buffer" },
+      },
     },
   },
 }

@@ -45,7 +45,7 @@ return {
         },
         telescope = {
           -- Available styles: `classic`, `flat`.
-          style = "flat",
+          style = "classic",
         },
         leap = {
           -- Dims the backdrop when using leap.
@@ -63,7 +63,7 @@ return {
     "rebelot/kanagawa.nvim",
     config = function()
       require("kanagawa").setup({
-        compile = false, -- enable compiling the colorscheme
+        compile = true, -- enable compiling the colorscheme
         undercurl = true, -- enable undercurls
         commentStyle = { italic = true },
         functionStyle = {},
@@ -475,6 +475,19 @@ return {
     "Yazeed1s/oh-lucy.nvim",
   },
 
+  {
+    "Vallen217/eidolon.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    -- Add in any other configuration;
+    --   event = foo,
+    --   config = bar
+    --   end,
+  },
   {
     "LazyVim/LazyVim",
     opts = {

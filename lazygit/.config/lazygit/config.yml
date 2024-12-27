@@ -8,7 +8,9 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never --line-numbers --color-only --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    # useConfig: false
+  diffs:
+    external: true
+    cmd: vimdiff "{{base}}" "{{target}}"   # useConfig: false
 
 theme:
   # Border color of focused window

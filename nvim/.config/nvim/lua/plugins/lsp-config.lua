@@ -10,6 +10,12 @@ return {
 
       inlay_hints = { enabled = false },
       document_highlight = { enabled = false },
+
+      servers = {
+        angularls = {
+          root_dir = require("lspconfig.util").root_pattern("angular.json", "tsconfig.json", "project.json"),
+        },
+      },
     },
   },
 }

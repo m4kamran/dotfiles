@@ -15,12 +15,7 @@ return {
   },
 
   {
-    "nvim-neotest/neotest",
-    enabled = false,
-  },
-
-  {
-    "nvim-neotest/neotest-jest",
+    "nvim-lualine/lualine.nvim",
     enabled = false,
   },
 }

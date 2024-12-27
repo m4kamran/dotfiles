@@ -6,6 +6,10 @@ return {
     opts = {
       notifier = { enabled = false },
       words = { enabled = false },
+      indent = { enabled = false },
+      zen = { enabled = false },
+      animate = { enabled = false },
+      scroll = { enabled = false },
       dashboard = {
         preset = {
           header = [[
