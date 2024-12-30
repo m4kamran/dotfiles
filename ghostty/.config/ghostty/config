@@ -1,12 +1,12 @@
 shell-integration = zsh
 
 font-size = 15
-font-family = "JetBrainsMono Nerd Font"
+font-family = "JetBrainsMono NFM Medium"
 
-theme = Kanagawa Dragon
+theme = mellow
+background = "#000000"
 
-window-padding-x = 5
-window-padding-y = 5
+window-padding-x = 10
+window-padding-y = 10
 window-padding-balance = true
 macos-titlebar-style = hidden
-background = #12120f
