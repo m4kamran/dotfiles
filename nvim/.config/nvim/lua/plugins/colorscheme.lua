@@ -456,12 +456,6 @@ return {
   { "datsfilipe/vesper.nvim" },
 
   {
-    "wtfox/jellybeans.nvim",
-    priority = 1000,
-    opts = {},
-  },
-
-  {
     "oahlen/iceberg.nvim",
   },
 

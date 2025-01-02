@@ -1,10 +1,9 @@
 shell-integration = zsh
 
 font-size = 15
-font-family = "JetBrainsMono NFM Medium"
+font-family = "JetBrains Mono NFM Regular"
 
 theme = mellow
-background = "#000000"
 
 window-padding-x = 10
 window-padding-y = 10

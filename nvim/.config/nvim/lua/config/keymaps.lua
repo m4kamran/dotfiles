@@ -22,8 +22,9 @@ vim.keymap.set("v", "d", '"_d')
 vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
 
 -- Lsp Lines
-vim.keymap.set("", "<Leader>ce", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+-- vim.keymap.set("", "<Leader>ce", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
 
+vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
 -- Remap macro recording
 -- vim.keymap.set("n", "q", "<nop>", {})
 -- vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
