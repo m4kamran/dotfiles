@@ -132,7 +132,7 @@ return {
 
   { "rose-pine/neovim", name = "rose-pine", opts = {
     styles = {
-      transparency = true,
+      transparent = true,
     },
   } },
 
@@ -466,10 +466,6 @@ return {
   },
 
   {
-    "Yazeed1s/oh-lucy.nvim",
-  },
-
-  {
     "Vallen217/eidolon.nvim",
     lazy = false,
     priority = 1000,
@@ -481,6 +477,15 @@ return {
     --   event = foo,
     --   config = bar
     --   end,
+  },
+  {
+    "ficcdaf/ashen.nvim",
+    lazy = false,
+    priority = 1000,
+    -- configuration is optional!
+    opts = {
+      -- your settings here
+    },
   },
   {
     "LazyVim/LazyVim",
