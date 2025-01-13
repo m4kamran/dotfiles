@@ -12,6 +12,9 @@ git:
     external: true
     cmd: vimdiff "{{base}}" "{{target}}"   # useConfig: false
 
+os:
+  edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'
+
 theme:
   # Border color of focused window
   activeBorderColor:
