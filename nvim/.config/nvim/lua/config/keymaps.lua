@@ -9,7 +9,7 @@ vim.keymap.set("n", "<C-_>", function()
     { cwd = vim.fn.getcwd(), win = {
       relative = "editor",
       position = "bottom",
-      height = 0.8,
+      height = 0.5,
     } }
   )
 end, { desc = "Term toggle" })
@@ -30,8 +30,8 @@ vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, sile
 -- vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
 
 -- Jester
--- vim.keymap.set("n", "<leader>tr", "<cmd>lua require('jester').run()<cr>", { desc = "Run Jester" })
--- vim.keymap.set("n", "<leader>tt", "<cmd>lua require('jester').run_file()<cr>", { desc = "Run Jester (focused)" })
+vim.keymap.set("n", "<leader>tr", "<cmd>lua require('jester').run()<cr>", { desc = "Run Jester" })
+vim.keymap.set("n", "<leader>tt", "<cmd>lua require('jester').run_file()<cr>", { desc = "Run Jester (focused)" })
 --
 -- TreeWalker
 -- movement
@@ -45,3 +45,11 @@ vim.keymap.set("n", "<D-S-j>", "<cmd>Treewalker SwapDown<cr>", { silent = true }
 vim.keymap.set("n", "<D-S-k>", "<cmd>Treewalker SwapUp<cr>", { silent = true })
 vim.keymap.set("n", "<D-S-l>", "<cmd>Treewalker SwapRight<CR>", { silent = true })
 vim.keymap.set("n", "<D-S-h>", "<cmd>Treewalker SwapLeft<CR>", { silent = true })
+
+-- lazygit in tmux
+-- vim.keymap.set(
+--   "n",
+--   "<leader>gg",
+--   ":!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+--   { silent = true }
+-- )

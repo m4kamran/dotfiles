@@ -13,7 +13,7 @@ return {
 
       servers = {
         angularls = {
-          root_dir = require("lspconfig.util").root_pattern("angular.json", "tsconfig.json", "project.json"),
+          root_dir = require("lspconfig.util").root_pattern("angular.json", "nx.json", "tsconfig.json", "project.json"),
         },
       },
     },

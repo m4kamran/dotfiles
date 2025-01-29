@@ -490,7 +490,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "mellow",
+      colorscheme = "kanagawa-dragon",
     },
   },
 }
