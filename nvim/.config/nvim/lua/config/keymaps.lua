@@ -18,11 +18,28 @@ end, { desc = "Term toggle" })
 vim.keymap.set("n", "d", '"_d')
 vim.keymap.set("v", "d", '"_d')
 
+-- Yank without changing the clipboard
+vim.keymap.set("x", "p", "P", { noremap = true })
+vim.keymap.set("x", "P", "p", { noremap = true })
+
+-- Move lines
+vim.keymap.set("n", "<c-j>", "5j", { noremap = true })
+vim.keymap.set("n", "<c-k>", "5k", { noremap = true })
+
+-- Macro
+vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
+vim.keymap.set("n", "q", "<Nop>", { desc = "Disabled (use Q for macro)", noremap = true })
+
 -- Diff View
 vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
 
 -- Lsp Lines
--- vim.keymap.set("", "<Leader>ce", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+vim.keymap.set("n", "<leader>ue", function()
+  vim.diagnostic.config({
+    virtual_lines = not vim.diagnostic.config().virtual_lines,
+    virtual_text = not vim.diagnostic.config().virtual_text,
+  })
+end, { desc = "Toggle diagnostic [l]ines" })
 
 vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
 -- Remap macro recording
@@ -30,26 +47,23 @@ vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, sile
 -- vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
 
 -- Jester
-vim.keymap.set("n", "<leader>tr", "<cmd>lua require('jester').run()<cr>", { desc = "Run Jester" })
-vim.keymap.set("n", "<leader>tt", "<cmd>lua require('jester').run_file()<cr>", { desc = "Run Jester (focused)" })
---
--- TreeWalker
--- movement
-vim.keymap.set({ "n" }, "<M-j>", "<cmd>Treewalker Down<cr>", { silent = true })
-vim.keymap.set({ "n" }, "<M-l>", "<cmd>Treewalker Right<cr>", { silent = true })
-vim.keymap.set({ "n" }, "<M-h>", "<cmd>Treewalker Left<cr>", { silent = true })
-vim.keymap.set({ "n" }, "<M-k>", "<cmd>Treewalker Up<cr>", { silent = true })
+vim.keymap.set("n", "<leader>tr", "<cmd>TestNearest<cr>", { desc = "Run Jester" })
+vim.keymap.set("n", "<leader>tt", "<cmd>TestFile<cr>", { desc = "Run Jester (focused)" })
 
--- swapping
-vim.keymap.set("n", "<D-S-j>", "<cmd>Treewalker SwapDown<cr>", { silent = true })
-vim.keymap.set("n", "<D-S-k>", "<cmd>Treewalker SwapUp<cr>", { silent = true })
-vim.keymap.set("n", "<D-S-l>", "<cmd>Treewalker SwapRight<CR>", { silent = true })
-vim.keymap.set("n", "<D-S-h>", "<cmd>Treewalker SwapLeft<CR>", { silent = true })
+-- Gitlab
+vim.keymap.set(
+  "n",
+  "<leader>gm",
+  "<cmd>lua require('gitlab').choose_merge_request()<cr>",
+  { desc = "Open Gitlab Merge Requests" }
+)
 
 -- lazygit in tmux
+-- vim.keymap.set("n", "<leader>gg", ":!tmux window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>", { silent = true })
+
 -- vim.keymap.set(
 --   "n",
 --   "<leader>gg",
---   ":!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+--   ":!tmux popup -d " .. vim.fn.getcwd() .. " -xC -yC -w80\\% -h80\\% -E lazygit<CR>",
 --   { silent = true }
 -- )

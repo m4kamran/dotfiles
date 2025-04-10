@@ -1,6 +1,7 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
+  enabled = true,
   opts = {
     -- lsp = {
     --   hover = {
@@ -12,6 +13,12 @@ return {
     -- },
     notify = {
       enabled = false,
+    },
+    cmdline = {
+      view = "cmdline",
+    },
+    presets = {
+      bottom_search = true,
     },
   },
 }

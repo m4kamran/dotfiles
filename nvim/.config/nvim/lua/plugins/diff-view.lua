@@ -3,6 +3,7 @@ return {
     "sindrets/diffview.nvim",
     config = function()
       require("diffview").setup({
+        enhanced_diff_hl = true,
         keymaps = {
           view = {
             { "n", "q", "<cmd>tabclose <cr>", { desc = "Close diffview" } },
@@ -25,6 +26,18 @@ return {
             width = 50,
             win_opts = {},
           },
+        },
+        hooks = {
+          view_enter = function(bufnr)
+            vim.diagnostic.config({
+              virtual_lines = false,
+            })
+          end,
+          view_leave = function(bufnr)
+            vim.diagnostic.config({
+              virtual_lines = true,
+            })
+          end,
         },
       })
     end,

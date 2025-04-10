@@ -1,3 +1,21 @@
+local base = {
+  red = "#ff657a",
+  maroon = "#F29BA7",
+  peach = "#ff9b5e",
+  yellow = "#eccc81",
+  green = "#a8be81",
+  teal = "#9cd1bb",
+  sky = "#A6C9E5",
+  sapphire = "#86AACC",
+  blue = "#5d81ab",
+  lavender = "#66729C",
+  mauve = "#b18eab",
+}
+
+local extend_base = function(value)
+  return vim.tbl_extend("force", base, value)
+end
+
 return {
   {
     "AlexvZyl/nordic.nvim",
@@ -107,6 +125,8 @@ return {
             RenderMarkdownCode = { bg = "none", fg = "none" },
             RenderMarkdownCodeInline = { bg = "none", fg = "none" },
             ColorColumn = { bg = "#000000" },
+            LineNr = { fg = "#000000", bg = "#000000" },
+            NonText = { fg = "#000000", bg = "#000000" },
           }
         end,
         theme = "dragon", -- Load "wave" theme when 'background' option is not set
@@ -141,6 +161,70 @@ return {
     lazy = false,
     config = function()
       require("catppuccin").setup({
+        -- background = {
+        --   dark = "frappe",
+        --   light = "latte",
+        -- },
+        color_overrides = {
+          frappe = extend_base({
+            rosewater = "#e29eca",
+            flamingo = "#e8b0d4",
+            pink = "#ea83a5",
+            mauve = "#aca1cf",
+            red = "#ea83a5",
+            maroon = "#ed96b3",
+            peach = "#f5a191",
+            yellow = "#e6b99d",
+            green = "#90b99f",
+            teal = "#85b5ba",
+            sky = "#97c0c4",
+            sapphire = "#97c0c4",
+            blue = "#92a2d5",
+            lavender = "#b7aed5",
+            text = "#c9c7cd",
+            subtext1 = "#b4b1ba",
+            subtext0 = "#9f9ca6",
+            overlay2 = "#8b8693",
+            overlay1 = "#6c6874",
+            overlay0 = "#444448",
+            surface2 = "#3b3b3e",
+            surface1 = "#313134",
+            surface0 = "#2a2a2c",
+            base = "#161617",
+            mantle = "#131314",
+            crust = "#18181a",
+          }),
+          mocha = extend_base({
+            rosewater = "#c5c8c6",
+            flamingo = "#d0d2d0",
+            pink = "#cc6666",
+            mauve = "#b294bb",
+            red = "#cc6666",
+            maroon = "#b06266",
+            peach = "#de935f",
+            yellow = "#f0c674",
+            green = "#b5bd68",
+            teal = "#8abeb7",
+            sky = "#8abeb7",
+            sapphire = "#81a2be",
+            blue = "#81a2be",
+            lavender = "#b294bb",
+            text = "#c5c8c6",
+            subtext1 = "#b4b6b3",
+            subtext0 = "#9fa1a0",
+            overlay2 = "#808283",
+            overlay1 = "#636567",
+            overlay0 = "#4d5057",
+            surface2 = "#373b41",
+            surface1 = "#2d3033",
+            surface0 = "#282a2e",
+            base = "#1d1f21",
+            mantle = "#191b1d",
+            crust = "#151719",
+          }),
+        },
+        no_italic = true, -- Force no italic
+        no_bold = true, -- Force no bold
         transparent_background = true,
         custom_highlights = function(c)
           return {
@@ -414,33 +498,33 @@ return {
     priority = 1000,
     opts = {
       transparent = true,
-      overrides = function(colors)
-        local theme = colors.theme
-        return {
-          -- NormalFloat = { bg = "none" },
-          -- FloatBorder = { bg = "none" },
-          -- FloatTitle = { bg = "none" },
-          --
-          -- -- Save a hlgroup with dark background and dimmed foreground
-          -- -- so that you can use it where you still want darker windows.
-          -- -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-          -- NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-          --
-          -- -- Popular plugins that open floats will link to NormalFloat by default;
-          -- -- set their background accordingly if you wish to keep them dark and borderless
-          -- LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
-          -- MasonNormal = { bg = "none", fg = theme.ui.fg_dim },
-
-          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
-          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-          PmenuSbar = { bg = theme.ui.bg_m1 },
-          PmenuThumb = { bg = theme.ui.bg_p2 },
-
-          NeoTreeDirectoryIcon = { fg = theme.ui.fg_dim },
-
-          TelescopeResultsNormal = { bg = "None" },
-        }
-      end,
+      -- overrides = function(colors)
+      --   local theme = colors.theme
+      --   return {
+      --     -- NormalFloat = { bg = "none" },
+      --     -- FloatBorder = { bg = "none" },
+      --     -- FloatTitle = { bg = "none" },
+      --     --
+      --     -- -- Save a hlgroup with dark background and dimmed foreground
+      --     -- -- so that you can use it where you still want darker windows.
+      --     -- -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+      --     -- NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+      --     --
+      --     -- -- Popular plugins that open floats will link to NormalFloat by default;
+      --     -- -- set their background accordingly if you wish to keep them dark and borderless
+      --     -- LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
+      --     -- MasonNormal = { bg = "none", fg = theme.ui.fg_dim },
+      --
+      --     -- Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+      --     -- PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+      --     -- PmenuSbar = { bg = theme.ui.bg_m1 },
+      --     -- PmenuThumb = { bg = theme.ui.bg_p2 },
+      --     --
+      --     -- NeoTreeDirectoryIcon = { fg = theme.ui.fg_dim },
+      --     --
+      --     -- TelescopeResultsNormal = { bg = "None" },
+      --   }
+      -- end,
     },
   },
 
@@ -463,6 +547,27 @@ return {
     "dgox16/oldworld.nvim",
     lazy = false,
     priority = 1000,
+    config = function()
+      require("oldworld").setup({
+        -- your settings here
+        variant = "oled",
+        highlight_overrides = {
+          diffAdded = { fg = "#a6e3a1" },
+          diffRemoved = { fg = "#f38ba8" },
+          diffChanged = { fg = "#89b4fa" },
+          diffOldFile = { fg = "#f9e2af" },
+          diffNewFile = { fg = "#fab387" },
+          diffFile = { fg = "#89b4fa" },
+          diffLine = { fg = "#6c7086" },
+          diffIndexLine = { fg = "#94e2d5" },
+
+          -- DiffAdd = { bg = U.darken(C.green, 0.18, C.base) }, -- diff mode: Added line |diff.txt|
+          -- DiffChange = { bg = U.darken(C.blue, 0.07, C.base) }, -- diff mode: Changed line |diff.txt|
+          -- DiffDelete = { bg = U.darken(C.red, 0.18, C.base) }, -- diff mode: Deleted line |diff.txt|
+          -- DiffText = { bg = U.darken(C.blue, 0.30, C.base) }, -- diff mode: Changed text within a changed line |diff.txt|
+        },
+      })
+    end,
   },
 
   {
@@ -488,9 +593,75 @@ return {
     },
   },
   {
+    "vague2k/vague.nvim",
+    config = function()
+      require("vague").setup({
+        transparent = true,
+        -- optional configuration here
+      })
+    end,
+  },
+  {
+    "zenbones-theme/zenbones.nvim",
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    dependencies = "rktjmp/lush.nvim",
+    lazy = false,
+    priority = 1000,
+    -- you can set set configuration options here
+    -- config = function()
+    --     vim.g.zenbones_darken_comments = 45
+    --     vim.cmd.colorscheme('zenbones')
+    -- end
+  },
+  -- {
+  --   "wtfox/jellybeans.nvim",
+  --   priority = 1000,
+  --   config = function()
+  --     require("jellybeans").setup({
+  --       style = "dark", -- "dark" or "light"
+  --       transparent = true,
+  --       italics = false,
+  --       flat_ui = false, -- toggles "flat UI" for pickers
+  --       plugins = {
+  --         all = false,
+  --         auto = true, -- will read lazy.nvim and apply the colors for plugins that are installed
+  --       },
+  --       on_highlights = function(highlights, colors) end,
+  --       on_colors = function(colors) end,
+  --     })
+  --   end,
+  -- },
+
+  -- {
+  --   "wheat-thin-wiens/rei.nvim",
+  --   priority = 1000,
+  --   branch = "dev",
+  --   opts = {
+  --     transparency = true,
+  --   },
+  -- },
+
+  -- {
+  --   "armannikoyan/rusty",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     transparent = true,
+  --   },
+  -- },
+  --
+  {
+    "killitar/obscure.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa-dragon",
+      colorscheme = "catppuccin-frappe",
     },
   },
 }
