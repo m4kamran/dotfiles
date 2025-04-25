@@ -16,15 +16,12 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal conceallevel=1",
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(event)
-    vim.keymap.set("n", "K", function()
-      vim.lsp.buf.hover({
-        border = "rounded",
-      })
-      vim.lsp.buf.signature_help({
-        border = "rounded",
-      })
-    end, { buffer = event.buf })
-  end,
-})
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--
+--     if client:supports_method('textDocument/documentColor')
+--       vim.lsp.document_color.enable(true, args.buf)
+--     end
+--   end
+-- })
