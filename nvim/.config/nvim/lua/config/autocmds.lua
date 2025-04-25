@@ -15,3 +15,16 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown" },
   command = "setlocal conceallevel=1",
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    vim.keymap.set("n", "K", function()
+      vim.lsp.buf.hover({
+        border = "rounded",
+      })
+      vim.lsp.buf.signature_help({
+        border = "rounded",
+      })
+    end, { buffer = event.buf })
+  end,
+})

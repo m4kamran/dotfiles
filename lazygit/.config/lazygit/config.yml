@@ -1,6 +1,6 @@
 gui:
   nerdFontsVersion: "3"
-  splitDiff: "auto"
+  splitDiff: "always"
   expandFocusedSidePanel: true
 
   # theme:
@@ -55,9 +55,9 @@ gui:
   #     - "#e8e8d3" # white from nvim theme
 
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --line-numbers --color-only --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  # paging:
+  #   colorArg: always
+  #   pager: delta --dark --paging=never --line-numbers --color-only --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 
 os:
   edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'

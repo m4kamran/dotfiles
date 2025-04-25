@@ -37,7 +37,7 @@ return {
               preview = false,
               layout = {
                 backdrop = false,
-                width = 50,
+                width = 40,
                 min_width = 40,
                 height = 0,
                 position = "left",

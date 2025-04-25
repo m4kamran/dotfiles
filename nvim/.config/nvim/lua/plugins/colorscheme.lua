@@ -642,7 +642,7 @@ return {
   --     transparency = true,
   --   },
   -- },
-
+  --
   -- {
   --   "armannikoyan/rusty",
   --   lazy = false,
@@ -651,7 +651,7 @@ return {
   --     transparent = true,
   --   },
   -- },
-  --
+
   {
     "killitar/obscure.nvim",
     lazy = false,
@@ -661,7 +661,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "nordic",
     },
   },
 }

@@ -26,3 +26,4 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%l %s"
 vim.opt.numberwidth = 4
+vim.opt.winborder = "none"
