@@ -67,3 +67,9 @@ vim.keymap.set(
 --   ":!tmux popup -d " .. vim.fn.getcwd() .. " -xC -yC -w80\\% -h80\\% -E lazygit<CR>",
 --   { silent = true }
 -- )
+--
+--
+
+vim.keymap.set("n", "<leader>o", "<cmd>:Other<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>os", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })

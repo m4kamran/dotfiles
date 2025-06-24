@@ -3,16 +3,15 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
-        virtual_text = {
-          severity = {
-            max = vim.diagnostic.severity.WARN,
-          },
-          current_line = true,
-        },
+        virtual_text = false,
+        -- virtual_lines = false,
+        -- virtual_text = {
+        --   severity = {
+        --     max = vim.diagnostic.severity.WARN,
+        --   },
+        --   current_line = true,
+        -- },
         virtual_lines = {
-          severity = {
-            min = vim.diagnostic.severity.ERROR,
-          },
           current_line = true,
         },
         signs = {

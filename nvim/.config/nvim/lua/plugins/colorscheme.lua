@@ -51,7 +51,7 @@ return {
           -- Bold font in cursorline.
           bold = false,
           -- Bold cursorline number.
-          bold_number = true,
+          bold_number = false,
           -- Available styles: 'dark', 'light'.
           theme = "dark",
           -- Blending the cursorline bg with the buffer bg.
@@ -195,32 +195,32 @@ return {
             crust = "#18181a",
           }),
           mocha = extend_base({
-            rosewater = "#c5c8c6",
-            flamingo = "#d0d2d0",
-            pink = "#cc6666",
-            mauve = "#b294bb",
-            red = "#cc6666",
-            maroon = "#b06266",
-            peach = "#de935f",
-            yellow = "#f0c674",
-            green = "#b5bd68",
-            teal = "#8abeb7",
-            sky = "#8abeb7",
-            sapphire = "#81a2be",
-            blue = "#81a2be",
-            lavender = "#b294bb",
-            text = "#c5c8c6",
-            subtext1 = "#b4b6b3",
-            subtext0 = "#9fa1a0",
-            overlay2 = "#808283",
-            overlay1 = "#636567",
-            overlay0 = "#4d5057",
-            surface2 = "#373b41",
-            surface1 = "#2d3033",
-            surface0 = "#282a2e",
-            base = "#1d1f21",
-            mantle = "#191b1d",
-            crust = "#151719",
+            rosewater = "#D8DEE9",
+            flamingo = "#E5E9F0",
+            pink = "#B48EAD",
+            mauve = "#B48EAD",
+            red = "#BF616A",
+            maroon = "#B74E58",
+            peach = "#D08770",
+            yellow = "#EBCB8B",
+            green = "#A3BE8C",
+            teal = "#8FBCBB",
+            sky = "#88C0D0",
+            sapphire = "#81A1C1",
+            blue = "#5E81AC",
+            lavender = "#B48EAD",
+            text = "#ECEFF4",
+            subtext1 = "#E5E9F0",
+            subtext0 = "#D8DEE9",
+            overlay2 = "#BBC3D4",
+            overlay1 = "#4C566A",
+            overlay0 = "#434C5E",
+            surface2 = "#3B4252",
+            surface1 = "#2E3440",
+            surface0 = "#242933",
+            base = "#191D24",
+            mantle = "#1E222A",
+            crust = "#222630",
           }),
         },
         no_italic = true, -- Force no italic
@@ -658,10 +658,47 @@ return {
     priority = 1000,
     opts = {},
   },
+
+  {
+    "webhooked/kanso.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("kanso").setup({
+        compile = false, -- enable compiling the colorscheme
+        undercurl = true, -- enable undercurls
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        statementStyle = {},
+        typeStyle = {},
+        disableItalics = false,
+        transparent = true, -- do not set background color
+        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+        terminalColors = true, -- define vim.g.terminal_color_{0,17}
+        colors = { -- add/modify theme and palette colors
+          palette = {},
+          theme = { zen = {}, pearl = {}, ink = {}, all = {} },
+        },
+        overrides = function(colors) -- add/modify highlights
+          local theme = colors.theme
+          return {
+            NormalFloat = { bg = "none" },
+          }
+        end,
+        theme = "zen", -- Load "zen" theme
+        background = { -- map the value of 'background' option to a theme
+          dark = "zen", -- try "ink" !
+          light = "pearl",
+        },
+      })
+    end,
+  },
+
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nordic",
+      colorscheme = "catppuccin-frappe",
     },
   },
 }
