@@ -665,6 +665,8 @@ return {
     priority = 1000,
     config = function()
       require("kanso").setup({
+        italics = true, -- enable italics
+        bold = false, -- enable bold text
         compile = false, -- enable compiling the colorscheme
         undercurl = true, -- enable undercurls
         commentStyle = { italic = true },
