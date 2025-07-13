@@ -64,22 +64,24 @@ local function setup_dynamic_diagnostics()
           timer = nil
         end
 
-        -- Check if current line has diagnostics
-        local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
-
-        if #diagnostics > 0 then
-          -- Start timer to show virtual lines after a brief delay
-          timer = vim.defer_fn(function()
-            show_virtual_lines()
-            timer = nil
-          end, 100) -- 100ms delay
-        else
-          -- No diagnostics on this line, ensure virtual text is shown
-          show_virtual_text()
-        end
+        -- Always show virtual text when moving to a new line
+        show_virtual_text()
       end
     end,
-    desc = "Dynamic diagnostic display on cursor movement",
+    desc = "Reset to virtual text on cursor movement",
+  })
+
+  -- Show virtual lines on cursor hold
+  vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+      local line = vim.api.nvim_win_get_cursor(0)[1]
+      local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
+
+      if #diagnostics > 0 then
+        show_virtual_lines()
+      end
+    end,
+    desc = "Show virtual lines on cursor hold",
   })
 
   -- Reset to virtual text when leaving insert mode or buffer

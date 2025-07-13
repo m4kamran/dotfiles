@@ -38,6 +38,8 @@ return {
     --   end, { desc = "Super Tab" })
     -- end,
   },
+
+  -- add this to the file where you setup your other plugins:
   -- {
   --   "copilotlsp-nvim/copilot-lsp",
   --   branch = "main",

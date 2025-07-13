@@ -230,6 +230,8 @@ return {
           return {
             NeoTreeDirectoryName = { fg = c.lavender },
             NeoTreeDirectoryIcon = { fg = c.yellow },
+            NeoTreeWinSeparator = { fg = "#000000", bg = "#000000" },
+            CursorLineNr = { fg = c.yellow, bg = "#000000" },
           }
         end,
       })
@@ -334,7 +336,7 @@ return {
     config = function()
       require("mellifluous").setup({
         dim_inactive = false,
-        colorset = "kanagawa_dragon",
+        colorset = "mountain",
         styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
           main_keywords = {},
           other_keywords = {},
@@ -695,6 +697,12 @@ return {
         },
       })
     end,
+  },
+
+  {
+    "stevedylandev/darkmatter-nvim",
+    lazy = false,
+    priority = 1000,
   },
 
   {
