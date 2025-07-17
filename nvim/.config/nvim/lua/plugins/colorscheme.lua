@@ -150,11 +150,20 @@ return {
     end,
   },
 
-  { "rose-pine/neovim", name = "rose-pine", opts = {
-    styles = {
-      transparent = true,
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      styles = {
+        transparent = false,
+      },
+      highlight_groups = {
+        Normal = { bg = "#000000" },
+        NormalFloat = { bg = "#000000" },
+        NormalNC = { bg = "#000000" },
+      },
     },
-  } },
+  },
 
   {
     "catppuccin/nvim",
@@ -230,8 +239,8 @@ return {
           return {
             NeoTreeDirectoryName = { fg = c.lavender },
             NeoTreeDirectoryIcon = { fg = c.yellow },
-            NeoTreeWinSeparator = { fg = "#000000", bg = "#000000" },
-            CursorLineNr = { fg = c.yellow, bg = "#000000" },
+            NeoTreeWinSeparator = { fg = "#1a1a1a", bg = "#000000" },
+            FloatBorder = { fg = "#1a1a1a", bg = "#000000" },
           }
         end,
       })
@@ -636,29 +645,13 @@ return {
   --   end,
   -- },
 
-  -- {
-  --   "wheat-thin-wiens/rei.nvim",
-  --   priority = 1000,
-  --   branch = "dev",
-  --   opts = {
-  --     transparency = true,
-  --   },
-  -- },
-  --
-  -- {
-  --   "armannikoyan/rusty",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {
-  --     transparent = true,
-  --   },
-  -- },
-
   {
-    "killitar/obscure.nvim",
-    lazy = false,
+    "wheat-thin-wiens/rei.nvim",
     priority = 1000,
-    opts = {},
+    branch = "dev",
+    opts = {
+      transparency = true,
+    },
   },
 
   {
@@ -669,14 +662,14 @@ return {
       require("kanso").setup({
         italics = true, -- enable italics
         bold = false, -- enable bold text
-        compile = false, -- enable compiling the colorscheme
+        compile = true, -- enable compiling the colorscheme
         undercurl = true, -- enable undercurls
         commentStyle = { italic = true },
         functionStyle = {},
         keywordStyle = { italic = true },
         statementStyle = {},
         typeStyle = {},
-        disableItalics = false,
+        disableItalics = true,
         transparent = true, -- do not set background color
         dimInactive = false, -- dim inactive window `:h hl-NormalNC`
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
@@ -703,6 +696,18 @@ return {
     "stevedylandev/darkmatter-nvim",
     lazy = false,
     priority = 1000,
+  },
+
+  {
+    "wtfox/jellybeans.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true, -- Enable transparent background
+      disableItalics = true, -- Disable italics
+      disable_background = true, -- Disable background color
+      no_bold = true, -- Disable bold text
+    }, -- Optional
   },
 
   {

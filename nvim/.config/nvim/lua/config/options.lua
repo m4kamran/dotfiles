@@ -8,7 +8,7 @@ vim.g.lazyvim_blink_main = false
 vim.g.root_spec = { "cwd" }
 
 vim.opt.cursorline = false
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.wrap = true
 vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 2
@@ -21,3 +21,10 @@ vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%l %s"
 vim.opt.numberwidth = 4
 vim.opt.winborder = "none"
+
+vim.filetype.add({
+  pattern = {
+    [".*%.component%.html"] = "htmlangular", -- Sets the filetype to `htmlangular` if it matches the pattern
+    [".*%.mjml"] = "html", -- Sets the filetype to `html` if it matches the pattern
+  },
+})

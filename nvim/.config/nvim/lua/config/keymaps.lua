@@ -50,14 +50,6 @@ vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, sile
 vim.keymap.set("n", "<leader>tr", "<cmd>TestNearest<cr>", { desc = "Run Jester" })
 vim.keymap.set("n", "<leader>tt", "<cmd>TestFile<cr>", { desc = "Run Jester (focused)" })
 
--- Gitlab
-vim.keymap.set(
-  "n",
-  "<leader>gm",
-  "<cmd>lua require('gitlab').choose_merge_request()<cr>",
-  { desc = "Open Gitlab Merge Requests" }
-)
-
 -- lazygit in tmux
 -- vim.keymap.set("n", "<leader>gg", ":!tmux window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>", { silent = true })
 
