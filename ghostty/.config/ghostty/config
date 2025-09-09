@@ -1,12 +1,13 @@
 shell-integration = zsh
 
-font-size = 15
-font-family = "JetBrains Mono NFM Regular"
 window-inherit-font-size = false
+font-size = 16
+font-family = "JetBrains Mono"
 
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
+window-decoration = none
 
 palette = 0=#27272a
 palette = 1=#ea83a5
@@ -38,3 +39,6 @@ custom-shader = shaders/cursor_smear.glsl
 # custom-shader = shaders/cursor_frozen.glsl
 
 keybind = shift+enter=text:\\\r\n
+
+auto-update-channel = tip
+auto-update = check

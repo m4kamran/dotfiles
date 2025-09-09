@@ -10,7 +10,6 @@ vim.g.root_spec = { "cwd" }
 vim.opt.cursorline = false
 vim.opt.relativenumber = false
 vim.opt.wrap = true
-vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
