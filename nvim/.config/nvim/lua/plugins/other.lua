@@ -1,5 +1,6 @@
 return {
   "rgroli/other.nvim",
+  enabled = false,
   opts = {},
   config = function()
     require("other-nvim").setup({

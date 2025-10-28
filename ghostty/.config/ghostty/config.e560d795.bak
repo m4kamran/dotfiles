@@ -37,4 +37,3 @@ keybind = global:ctrl+f=toggle_quick_terminal
 custom-shader = shaders/cursor_smear.glsl
 # custom-shader = shaders/cursor_frozen.glsl
 
-keybind = shift+enter=text:\x1b\r

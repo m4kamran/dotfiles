@@ -11,65 +11,33 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   desc = "Auto fix ESLint errors on save",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown" },
-  command = "setlocal conceallevel=1",
-})
-
--- vim.api.nvim_create_autocmd('LspAttach', {
---   callback = function(args)
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---
---     if client:supports_method('textDocument/documentColor')
---       vim.lsp.document_color.enable(true, args.buf)
---     end
---   end
--- })
--- Dynamic diagnostic display: virtual text by default, virtual lines on hover
 local function setup_dynamic_diagnostics()
-  local current_line = -1
+  local current_mode = "virtual_text" -- Track current mode to avoid redundant config updates
   local timer = nil
 
   -- Function to show virtual lines for current line
-  -- Function to show virtual lines for current line
   local function show_virtual_lines()
-    vim.diagnostic.config({
-      virtual_text = false,
-      virtual_lines = {
-        current_line = true,
-      },
-    })
+    if current_mode ~= "virtual_lines" then
+      current_mode = "virtual_lines"
+      vim.diagnostic.config({
+        virtual_text = false,
+        virtual_lines = {
+          current_line = true,
+        },
+      })
+    end
   end
 
   -- Function to show virtual text (default state)
   local function show_virtual_text()
-    vim.diagnostic.config({
-      virtual_text = true,
-      virtual_lines = false,
-    })
+    if current_mode ~= "virtual_text" then
+      current_mode = "virtual_text"
+      vim.diagnostic.config({
+        virtual_text = true,
+        virtual_lines = false,
+      })
+    end
   end
-
-  -- Set up cursor movement detection
-  vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-    callback = function()
-      local line = vim.api.nvim_win_get_cursor(0)[1]
-
-      -- If we moved to a new line
-      if line ~= current_line then
-        current_line = line
-
-        -- Cancel any existing timer
-        if timer then
-          timer:stop()
-          timer = nil
-        end
-
-        -- Always show virtual text when moving to a new line
-        show_virtual_text()
-      end
-    end,
-    desc = "Reset to virtual text on cursor movement",
-  })
 
   -- Show virtual lines on cursor hold
   vim.api.nvim_create_autocmd("CursorHold", {
@@ -84,16 +52,22 @@ local function setup_dynamic_diagnostics()
     desc = "Show virtual lines on cursor hold",
   })
 
-  -- Reset to virtual text when leaving insert mode or buffer
-  vim.api.nvim_create_autocmd({ "InsertLeave", "BufLeave" }, {
+  -- Reset to virtual text when moving cursor or leaving insert mode/buffer
+  vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "InsertLeave", "BufLeave" }, {
     callback = function()
+      -- Cancel any existing timer
       if timer then
         timer:stop()
         timer = nil
       end
-      show_virtual_text()
+
+      -- Debounce the virtual text reset
+      timer = vim.defer_fn(function()
+        show_virtual_text()
+        timer = nil
+      end, 100)
     end,
-    desc = "Reset to virtual text display",
+    desc = "Reset to virtual text display with debouncing",
   })
 
   -- Initialize with virtual text
