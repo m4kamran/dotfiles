@@ -193,3 +193,4 @@ export YARN_NPM_AUTH_TOKEN="7GgDvmhLCLa3qzKg5rzU"
 export DISABLE_COMMIT_TESTS=true
 
 alias claude="/Users/muhammad.kamran/.claude/local/claude"
+export PATH="$HOME/bin:$PATH"

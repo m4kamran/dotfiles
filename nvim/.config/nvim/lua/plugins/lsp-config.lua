@@ -2,14 +2,14 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
+      -- capabilities = {
+      --   textDocument = {
+      --     foldingRange = {
+      --       dynamicRegistration = false,
+      --       lineFoldingOnly = true,
+      --     },
+      --   },
+      -- },
       diagnostics = {
         virtual_text = false,
         -- virtual_lines = false,

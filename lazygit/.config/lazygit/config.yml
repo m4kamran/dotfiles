@@ -2,7 +2,6 @@ gui:
   nerdFontsVersion: "3"
   splitDiff: "always"
   expandFocusedSidePanel: true
-
   # theme:
   #   # Border color of focused window
   #   activeBorderColor:
@@ -53,12 +52,23 @@ gui:
   #   # Default text color
   #   defaultFgColor:
   #     - "#e8e8d3" # white from nvim theme
-
 git:
-  # paging:
-  #   colorArg: always
-  #   pager: delta --dark --paging=never --line-numbers --color-only --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-
+# paging:
+#   colorArg: always
+#   pager: delta --dark --paging=never --line-numbers --color-only --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 os:
-  # edit: '[ -z "$NVIM_LISTEN_ADDRESS" ] && nvim -- "$FILENAME" || nvim --server "$NVIM_LISTEN_ADDRESS" --remote-send "<C-\\><C-n>:edit $FILENAME<CR>"'
+# edit: '[ -z "$NVIM_LISTEN_ADDRESS" ] && nvim -- "$FILENAME" || nvim --server "$NVIM_LISTEN_ADDRESS" --remote-send "<C-\\><C-n>:edit $FILENAME<CR>"'
 
+# Custom keybindings
+keybinding:
+  files:
+    # Ctrl+T: Open single file diff with nvim (default behavior)
+    openDiffTool: '<c-t>'
+    # Ctrl+Shift+T: Open ALL conflicted files in nvim tabs
+    openMergeAll: '<c-T>'
+customCommands:
+  - key: '<c-T>'
+    context: 'files'
+    description: 'Open all merge conflicts in nvim tabs'
+    command: '~/bin/nvim-merge-all'
+    output: terminal
