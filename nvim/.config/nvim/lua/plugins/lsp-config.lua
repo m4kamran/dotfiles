@@ -2,6 +2,14 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      -- capabilities = {
+      --   textDocument = {
+      --     foldingRange = {
+      --       dynamicRegistration = false,
+      --       lineFoldingOnly = true,
+      --     },
+      --   },
+      -- },
       diagnostics = {
         virtual_text = false,
         -- virtual_lines = false,
@@ -34,11 +42,11 @@ return {
       inlay_hints = { enabled = false },
       document_highlight = { enabled = false },
 
-      servers = {
-        angularls = {
-          root_dir = require("lspconfig.util").root_pattern("angular.json", "nx.", "tsconfig.json", "project.json"),
-        },
-      },
+      -- servers = {
+      --   angularls = {
+      --     root_dir = require("lspconfig.util").root_pattern("angular.json", "nx.", "tsconfig.json", "project.json"),
+      --   },
+      -- },
     },
   },
 }

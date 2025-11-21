@@ -23,8 +23,8 @@ vim.keymap.set("x", "p", "P", { noremap = true })
 vim.keymap.set("x", "P", "p", { noremap = true })
 
 -- Move lines
-vim.keymap.set("n", "<c-j>", "5j", { noremap = true })
-vim.keymap.set("n", "<c-k>", "5k", { noremap = true })
+vim.keymap.set("n", "<D-j>", "5j", { noremap = true })
+vim.keymap.set("n", "<D-k>", "5k", { noremap = true })
 
 -- Macro
 vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
@@ -47,8 +47,8 @@ vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, sile
 -- vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
 
 -- Jester
-vim.keymap.set("n", "<leader>tr", "<cmd>TestNearest<cr>", { desc = "Run Jester" })
-vim.keymap.set("n", "<leader>tt", "<cmd>TestFile<cr>", { desc = "Run Jester (focused)" })
+-- vim.keymap.set("n", "<leader>tr", "<cmd>TestNearest<cr>", { desc = "Run Test file" })
+-- vim.keymap.set("n", "<leader>tt", "<cmd>TestFile<cr>", { desc = "Run Test (focused)" })
 
 -- lazygit in tmux
 -- vim.keymap.set("n", "<leader>gg", ":!tmux window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>", { silent = true })
@@ -65,3 +65,11 @@ vim.keymap.set("n", "<leader>tt", "<cmd>TestFile<cr>", { desc = "Run Jester (foc
 vim.keymap.set("n", "<leader>o", "<cmd>:Other<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>os", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+
+-- Fyler
+-- vim.keymap.set(
+--   "n",
+--   "<leader>e",
+--   "<cmd>:Fyler kind=split_left <CR>",
+--   { noremap = true, silent = true, desc = "Explorer" }
+-- )

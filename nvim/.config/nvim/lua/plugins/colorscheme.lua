@@ -170,6 +170,10 @@ return {
     lazy = false,
     config = function()
       require("catppuccin").setup({
+        float = {
+          transparent = true, -- enable transparent floating windows
+          solid = false, -- use solid styling for floating windows, see |winborder|
+        },
         -- background = {
         --   dark = "frappe",
         --   light = "latte",
@@ -553,7 +557,6 @@ return {
   {
     "oahlen/iceberg.nvim",
   },
-
   {
     "dgox16/oldworld.nvim",
     lazy = false,
@@ -708,6 +711,51 @@ return {
       disable_background = true, -- Disable background color
       no_bold = true, -- Disable bold text
     }, -- Optional
+  },
+
+  {
+    "idr4n/github-monochrome.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      styles = {
+        comments = { italic = false },
+        conditionals = { bold = true },
+        loops = { bold = true },
+        variables = {},
+        floats = "None",
+        sidebars = "None",
+      },
+      on_highlights = function(hl, c, s)
+        -- applies to all styles
+        hl.IblScope = { fg = "#634E89" }
+        hl.FloatBorder = { fg = c.none }
+        hl.FloatBackground = { bg = c.none }
+        hl.TreesitterContext = { bg = c.none }
+        hl.TreesitterContextBottom = { underline = true, sp = c.magenta }
+
+        -- applies to 'light' style only
+        if s == "light" then
+          hl.FloatBorder = { fg = c.red }
+        end
+        -- applies to 'solarized' style only
+        if s == "solarized" then
+          hl.IblScope = { fg = "#62868C" }
+        end
+      end,
+    },
+  },
+
+  { "tahayvr/matteblack.nvim", lazy = false, priority = 1000 },
+
+  {
+    "loctvl842/monokai-pro.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent_background = true,
+      background_clear = { "float_win" },
+    },
   },
 
   {
