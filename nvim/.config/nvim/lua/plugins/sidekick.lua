@@ -4,7 +4,7 @@ return {
     cli = {
       win = {
         split = {
-          width = 120, -- increased from default 80
+          width = 0.4, -- increased from default 80
         },
       },
     },

@@ -5,8 +5,9 @@ font-family = "JetBrains Mono NFM Regular"
 window-inherit-font-size = false
 
 window-padding-x = 10
-window-padding-y = 10
+window-padding-y = 0,10
 window-padding-balance = true
+macos-titlebar-style = tabs
 
 palette = 0=#27272a
 palette = 1=#ea83a5

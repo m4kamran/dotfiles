@@ -53,6 +53,12 @@ return {
     -- end,
   },
 
+  -- Disable Copilot status in lualine
+  {
+    "AndreM222/copilot-lualine",
+    enabled = false,
+  },
+
   -- add this to the file where you setup your other plugins:
   -- {
   --   "copilotlsp-nvim/copilot-lsp",

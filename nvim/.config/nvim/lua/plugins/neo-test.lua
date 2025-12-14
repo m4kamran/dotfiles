@@ -1,5 +1,6 @@
 return {
   "nvim-neotest/neotest",
+  enabled = false,
   dependencies = {
     "nvim-neotest/neotest-jest",
     "marilari88/neotest-vitest",
@@ -29,7 +30,12 @@ return {
       },
     },
     output_panel = {
+      enabled = true,
       open = "botright vsplit | vertical resize 120",
+    },
+    status = {
+      virtual_text = true,
+      signs = false,
     },
   },
 }

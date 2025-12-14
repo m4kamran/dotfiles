@@ -1,17 +1,16 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
 
--- Terminal with borderr
+-- Terminal with border
 vim.keymap.set("n", "<C-_>", function()
-  Snacks.terminal.toggle(
-    nil,
-    { cwd = vim.fn.getcwd(), win = {
+  Snacks.terminal.toggle(nil, {
+    cwd = vim.fn.getcwd(),
+    win = {
       relative = "editor",
       position = "bottom",
-      height = 0.5,
-    } }
-  )
+      height = 0.6,
+    },
+  })
 end, { desc = "Term toggle" })
 
 -- Delete without yanking
@@ -44,34 +43,7 @@ vim.keymap.set("n", "<leader>ue", function()
 end, { desc = "Toggle diagnostic [l]ines" })
 
 vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
--- Remap macro recording
--- vim.keymap.set("n", "q", "<nop>", {})
--- vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
-
--- Jester
--- vim.keymap.set("n", "<leader>tr", "<cmd>TestNearest<cr>", { desc = "Run Test file" })
--- vim.keymap.set("n", "<leader>tt", "<cmd>TestFile<cr>", { desc = "Run Test (focused)" })
-
--- lazygit in tmux
--- vim.keymap.set("n", "<leader>gg", ":!tmux window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>", { silent = true })
-
--- vim.keymap.set(
---   "n",
---   "<leader>gg",
---   ":!tmux popup -d " .. vim.fn.getcwd() .. " -xC -yC -w80\\% -h80\\% -E lazygit<CR>",
---   { silent = true }
--- )
---
---
 
 vim.keymap.set("n", "<leader>o", "<cmd>:Other<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>os", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
-
--- Fyler
--- vim.keymap.set(
---   "n",
---   "<leader>e",
---   "<cmd>:Fyler kind=split_left_most <CR>",
---   { noremap = true, silent = true, desc = "Explorer" }
--- )

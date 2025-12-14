@@ -3,6 +3,15 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+      {
+        "<leader>/",
+        function()
+          Snacks.picker.resume({ source = "grep" })
+        end,
+        desc = "Grep (Root Dir)",
+      },
+    },
     opts = {
       bigfile = {
         linelength = 800,
@@ -11,20 +20,10 @@ return {
       words = { enabled = false },
       indent = { enabled = false },
       animate = { enabled = false },
-      scroll = { enabled = false },
       image = {},
       dashboard = {
         preset = {
           header = [[
-            _   .-')              .-. .-')
-            ( '.( OO )_            \  ( OO )
-            ,--.   ,--.)   .---.  ,--. ,--.
-            |   `.'   |   / .  |  |  .'   /
-            |         |  / /|  |  |      /,
-            |  |'.'|  | / / |  |_ |     ' _)
-            |  |   |  |/  '-'    ||  .   \
-            |  |   |  |`----|  |-'|  |\   \
-            `--'   `--'     `--'  `--' '--'
           ]],
         },
       },

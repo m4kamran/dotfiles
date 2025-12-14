@@ -39,7 +39,7 @@ return {
         },
       },
 
-      inlay_hints = { enabled = false },
+      inlay_hints = { enabled = true },
       document_highlight = { enabled = false },
 
       -- servers = {
