@@ -24,16 +24,16 @@ return {
 
     -- Add or skip adding a new cursor by matching word/selection
     set({ "n", "x" }, "<C-n>", function()
-      mc.matchAddCursor(1)
-    end)
-    set({ "n", "x" }, "<C-q>", function()
-      mc.matchSkipCursor(1)
-    end)
-    set({ "n", "x" }, "<C-N>", function()
       mc.matchAddCursor(-1)
     end)
-    set({ "n", "x" }, "<C-Q>", function()
+    set({ "n", "x" }, "<C-q>", function()
       mc.matchSkipCursor(-1)
+    end)
+    set({ "n", "x" }, "<C-N>", function()
+      mc.matchAddCursor(1)
+    end)
+    set({ "n", "x" }, "<C-Q>", function()
+      mc.matchSkipCursor(1)
     end)
 
     -- Add all matches in the document

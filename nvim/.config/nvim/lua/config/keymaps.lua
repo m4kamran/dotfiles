@@ -32,7 +32,7 @@ vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
 vim.keymap.set("n", "q", "<Nop>", { desc = "Disabled (use Q for macro)", noremap = true })
 
 -- Diff View
-vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
+vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Diff View" })
 
 -- Lsp Lines
 vim.keymap.set("n", "<leader>ue", function()
