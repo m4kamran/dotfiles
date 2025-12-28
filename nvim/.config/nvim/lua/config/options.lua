@@ -6,8 +6,9 @@ vim.g.lazyvim_picker = "snacks"
 vim.g.lazyvim_blink_main = false
 vim.g.root_spec = { "cwd" }
 
-vim.opt.cursorline = false
-vim.opt.relativenumber = false
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 2
@@ -20,7 +21,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%l %s"
 vim.opt.numberwidth = 4
 vim.opt.winborder = "none"
-vim.opt.diffopt:append("linematch:60")
 
 vim.filetype.add({
   pattern = {
