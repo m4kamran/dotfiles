@@ -32,7 +32,7 @@ vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
 vim.keymap.set("n", "q", "<Nop>", { desc = "Disabled (use Q for macro)", noremap = true })
 
 -- Diff View
-vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Diff View" })
+vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
 
 -- Lsp Lines
 vim.keymap.set("n", "<leader>ue", function()
@@ -44,6 +44,19 @@ end, { desc = "Toggle diagnostic [l]ines" })
 
 vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>o", "<cmd>:Other<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>os", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>o", "<cmd>:Other<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>os", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+--
+-- -- Harlequin SQL IDE (floating terminal like lazygit)
+-- vim.keymap.set("n", "<leader>D", function()
+--   Snacks.terminal.open("hq", {
+--     cwd = vim.fn.getcwd(),
+--     win = {
+--       style = "float",
+--       border = "rounded",
+--       width = 0.9,
+--       height = 0.9,
+--     },
+--   })
+-- end, { desc = "Harlequin SQL IDE" })

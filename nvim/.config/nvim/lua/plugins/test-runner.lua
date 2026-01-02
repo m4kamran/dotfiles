@@ -74,13 +74,6 @@ local function get_test_command(framework, file, test_name)
     end
     return string.format("npx vitest run %s", relative_file)
   elseif framework == "jest" then
-    -- Angular projects should use ng test which properly initializes TestBed
-    if is_angular_project() then
-      if test_name then
-        return string.format("npx ng test --no-watch --no-coverage --test-path-pattern='%s' --test-name-pattern='%s'", relative_file, test_name)
-      end
-      return string.format("npx ng test --no-watch --no-coverage --test-path-pattern='%s'", relative_file)
-    end
     local jest_config = find_jest_config()
     local config_flag = jest_config and string.format(" --config=%s", jest_config) or ""
     if test_name then
