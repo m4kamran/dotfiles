@@ -1,6 +1,7 @@
 return {
   {
     "sindrets/diffview.nvim",
+    enabled = false,
     config = function()
       local actions = require("diffview.actions")
       require("diffview").setup({
@@ -69,28 +70,5 @@ return {
         },
       })
     end,
-  },
-  {
-    "esmuellert/vscode-diff.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    branch = "next",
-    cmd = "CodeDiff",
-    opts = {
-      keymaps = {
-        view = {
-          quit = "q", -- Close diff tab
-          toggle_explorer = "<leader>e", -- Toggle explorer visibility (explorer mode only)
-          next_hunk = "]c", -- Jump to next change
-          prev_hunk = "[c", -- Jump to previous change
-          next_file = "<Tab>", -- Next file in explorer mode
-          prev_file = "<S-Tab>", -- Previous file in explorer mode
-        },
-        explorer = {
-          select = "<CR>", -- Open diff for selected file
-          hover = "K", -- Show file diff preview
-          refresh = "R", -- Refresh git status
-        },
-      },
-    },
   },
 }

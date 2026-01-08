@@ -1,6 +1,9 @@
 # shell-integration = zsh
 
-font-size = 15
+# Force Nushell to use ~/.config/nushell instead of ~/Library/Application Support/nushell
+env = XDG_CONFIG_HOME=/Users/muhammad.kamran/.config
+
+font-size = 17
 font-family = "JetBrains Mono NFM Regular"
 # font-family = "Berkeley Mono Trial"
 window-inherit-font-size = false
@@ -33,7 +36,7 @@ selection-foreground = #c9c7cd
 
 background = #000000
 
-keybind = global:ctrl+f=toggle_quick_terminal
+keybind = global:ctrl+shift+f=toggle_quick_terminal
 
 # custom-shader = shaders/cursor_smear_fade.glsl
 custom-shader = shaders/cursor_smear.glsl

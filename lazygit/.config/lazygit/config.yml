@@ -53,6 +53,8 @@ gui:
   #   defaultFgColor:
   #     - "#e8e8d3" # white from nvim theme
 git:
+  merging:
+    manualCommit: false
 # paging:
 #   colorArg: always
 #   pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

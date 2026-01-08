@@ -21,6 +21,16 @@ vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%l %s"
 vim.opt.numberwidth = 4
 vim.opt.winborder = "none"
+vim.opt.diffopt = {
+  "internal",
+  "filler",
+  "closeoff",
+  "context:12",
+  "algorithm:histogram",
+  "linematch:200",
+  "indent-heuristic",
+  "iwhite", -- I toggle this one, it doesn't fit all cases.
+}
 
 vim.filetype.add({
   pattern = {

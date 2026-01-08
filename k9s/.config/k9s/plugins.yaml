@@ -1,0 +1,17 @@
+plugins:
+  stern:
+    shortCut: Shift-L
+    confirm: false
+    description: "Logs <Stern>"
+    scopes:
+      - pods
+    command: /opt/homebrew/bin/stern
+    background: false
+    args:
+      - --tail
+      - "100"
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT

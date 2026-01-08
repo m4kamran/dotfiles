@@ -1,6 +1,17 @@
 return {
   "jake-stewart/multicursor.nvim",
   branch = "1.0",
+  keys = {
+    { "<up>", mode = { "n", "x" }, desc = "Add cursor above" },
+    { "<down>", mode = { "n", "x" }, desc = "Add cursor below" },
+    { "<leader><up>", mode = { "n", "x" }, desc = "Skip cursor above" },
+    { "<leader><down>", mode = { "n", "x" }, desc = "Skip cursor below" },
+    { "<C-n>", mode = { "n", "x" }, desc = "Match add cursor prev" },
+    -- { "<C-q>", mode = { "n", "x" }, desc = "Match skip cursor prev" },
+    { "<C-N>", mode = { "n", "x" }, desc = "Match add cursor next" },
+    -- { "<C-Q>", mode = { "n", "x" }, desc = "Match skip cursor next" },
+    { "<C-a>", mode = { "n", "x" }, desc = "Match all add cursors" },
+  },
   config = function()
     local mc = require("multicursor-nvim")
 
@@ -8,7 +19,6 @@ return {
 
     local set = vim.keymap.set
 
-    -- Add or skip cursor above/below the main cursor.
     set({ "n", "x" }, "<up>", function()
       mc.lineAddCursor(-1)
     end)
@@ -22,7 +32,6 @@ return {
       mc.lineSkipCursor(1)
     end)
 
-    -- Add or skip adding a new cursor by matching word/selection
     set({ "n", "x" }, "<C-n>", function()
       mc.matchAddCursor(-1)
     end)
@@ -36,23 +45,19 @@ return {
       mc.matchSkipCursor(1)
     end)
 
-    -- Add all matches in the document
     set({ "n", "x" }, "<C-a>", mc.matchAllAddCursors)
 
-    -- You can also add cursors with any motion you prefer:
-    -- set("n", "<right>", function()
-    --     mc.addCursor("w")
-    -- end)
-    -- set("n", "<leader><right>", function()
-    -- log
-    --     mc.skipCursor("w")
-    -- end)
+    mc.addKeymapLayer(function(layerSet)
+      layerSet({ "n", "x" }, "<left>", mc.nextCursor)
+      layerSet({ "n", "x" }, "<right>", mc.prevCursor)
 
-    -- Rotate the main cursor.
-    set({ "n", "x" }, "<left>", mc.nextCursor)
-    set({ "n", "x" }, "<right>", mc.prevCursor)
-
-    -- Delete the main cursor.
-    set({ "n", "x" }, "<C-x>", mc.clearCursors)
+      layerSet("n", "<esc>", function()
+        if not mc.cursorsEnabled() then
+          mc.enableCursors()
+        else
+          mc.clearCursors()
+        end
+      end)
+    end)
   end,
 }

@@ -1,0 +1,93 @@
+# Catppuccin Frappe theme for k9s
+# Matching Neovim colorscheme from dotfiles
+
+k9s:
+  body:
+    fgColor: "#c9c7cd"      # text
+    bgColor: default
+    logoColor: "#b18eab"    # mauve
+  prompt:
+    fgColor: "#c9c7cd"      # text
+    bgColor: default
+    suggestColor: "#5d81ab" # blue
+  info:
+    fgColor: "#9cd1bb"      # teal
+    sectionColor: "#c9c7cd" # text
+  dialog:
+    fgColor: "#c9c7cd"      # text
+    bgColor: default
+    buttonFgColor: "#c9c7cd"
+    buttonBgColor: "#b18eab" # mauve
+    buttonFocusFgColor: "#000000"
+    buttonFocusBgColor: "#a8be81" # green
+    labelFgColor: "#ff9b5e" # peach
+    fieldFgColor: "#c9c7cd"
+  frame:
+    border:
+      fgColor: "#3b3b3e"    # surface2
+      focusColor: "#b18eab" # mauve
+    menu:
+      fgColor: "#c9c7cd"    # text
+      keyColor: "#5d81ab"   # blue
+      numKeyColor: "#5d81ab"
+    crumbs:
+      fgColor: "#000000"    # black
+      bgColor: "#5d81ab"    # blue
+      activeColor: "#b18eab" # mauve
+    status:
+      newColor: "#9cd1bb"   # teal
+      modifyColor: "#5d81ab" # blue
+      addColor: "#a8be81"   # green
+      pendingColor: "#ff9b5e" # peach
+      errorColor: "#ff657a" # red
+      highlightColor: "#eccc81" # yellow
+      killColor: "#F29BA7"  # maroon
+      completedColor: "#6c6874" # overlay1
+    title:
+      fgColor: "#c9c7cd"    # text
+      bgColor: default
+      highlightColor: "#5d81ab" # blue
+      counterColor: "#b18eab" # mauve
+      filterColor: "#a8be81" # green
+  views:
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - "#5d81ab"         # blue
+        - "#ff657a"         # red
+      defaultChartColors:
+        - "#5d81ab"         # blue
+        - "#ff657a"         # red
+    table:
+      fgColor: "#c9c7cd"    # text
+      bgColor: default
+      cursorFgColor: "#000000" # black
+      cursorBgColor: "#5d81ab" # blue
+      markColor: "#eccc81"  # yellow
+      header:
+        fgColor: "#5d81ab"  # blue
+        bgColor: "#161617"  # base
+        sorterColor: "#9cd1bb" # teal
+    xray:
+      fgColor: "#c9c7cd"    # text
+      bgColor: default
+      cursorColor: "#5d81ab" # blue
+      cursorTextColor: "#000000" # black
+      graphicColor: "#b18eab" # mauve
+    yaml:
+      keyColor: "#5d81ab"   # blue
+      colonColor: "#6c6874" # overlay1
+      valueColor: "#c9c7cd" # text
+    logs:
+      fgColor: "#c9c7cd"    # text
+      bgColor: default
+      indicator:
+        fgColor: "#c9c7cd"
+        bgColor: "#161617"
+        toggleOnColor: "#a8be81"  # green
+        toggleOffColor: "#6c6874" # overlay1
+    help:
+      fgColor: "#c9c7cd"    # text
+      bgColor: default
+      indicator:
+        fgColor: "#5d81ab"  # blue

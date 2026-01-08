@@ -32,7 +32,9 @@ vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
 vim.keymap.set("n", "q", "<Nop>", { desc = "Disabled (use Q for macro)", noremap = true })
 
 -- Diff View
-vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
+-- vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
+vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Git Diff (vscode-diff)" })
+vim.keymap.set("n", "<leader>gm", "<cmd>CodeDiff merge %<cr>", { desc = "Merge conflicts (vscode-diff)" })
 
 -- Lsp Lines
 vim.keymap.set("n", "<leader>ue", function()
