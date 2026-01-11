@@ -19,8 +19,8 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- Pin nvim-treesitter to master branch for Neovim 0.11.x compatibility
-    { "nvim-treesitter/nvim-treesitter", branch = "master" },
+    -- Pin nvim-treesitter to main branch
+    { "nvim-treesitter/nvim-treesitter", branch = "main" },
     { import = "lazyvim.plugins.extras.lsp.neoconf" },
     -- { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
