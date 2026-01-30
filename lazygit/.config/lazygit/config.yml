@@ -58,19 +58,8 @@ git:
 # paging:
 #   colorArg: always
 #   pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-os:
-# edit: '[ -z "$NVIM_LISTEN_ADDRESS" ] && nvim -- "$FILENAME" || nvim --server "$NVIM_LISTEN_ADDRESS" --remote-send "<C-\\><C-n>:edit $FILENAME<CR>"'
-
-# Custom keybindings
-keybinding:
-  files:
-    # Ctrl+T: Open single file diff with nvim (default behavior)
-    openDiffTool: '<c-t>'
-    # Ctrl+Shift+T: Open ALL conflicted files in nvim tabs
-    openMergeAll: '<c-T>'
 customCommands:
-  - key: '<c-T>'
+  - key: 'm'
     context: 'files'
-    description: 'Open all merge conflicts in nvim tabs'
-    command: '~/bin/nvim-merge-all'
-    output: terminal
+    description: 'Open merge conflicts with CodeDiff'
+    command: 'nvim -c "lua vim.defer_fn(function() local f = vim.fn.systemlist(\"git diff --name-only --diff-filter=U\")[1]; if f then vim.cmd(\"edit \" .. f); vim.cmd(\"CodeDiff merge %\") else vim.notify(\"No conflicts\", vim.log.levels.WARN) end end, 100)"'

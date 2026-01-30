@@ -4,27 +4,30 @@ return {
     priority = 1000,
     lazy = false,
     keys = {
-      {
-        "<leader>/",
-        function()
-          Snacks.picker.resume({ source = "grep" })
-        end,
-        desc = "Grep (Root Dir)",
-      },
-      {
-        "<leader><leader>",
-        function()
-          Snacks.picker.resume({ source = "files" })
-        end,
-        desc = "Find Files (Root Dir)",
-      },
+      -- {
+      --   "<leader>/",
+      --   function()
+      --     Snacks.picker.resume({ source = "grep" })
+      --   end,
+      --   desc = "Grep (Root Dir)",
+      -- },
+      -- {
+      --   "<leader><leader>",
+      --   function()
+      --     Snacks.picker.resume({ source = "files" })
+      --   end,
+      --   desc = "Find Files (Root Dir)",
+      -- },
     },
     opts = {
       bigfile = {
         linelength = 800,
       },
       notifier = { enabled = false },
-      words = { enabled = false },
+      words = {
+        enabled = true,
+        modes = { "v" },
+      },
       indent = { enabled = false },
       animate = { enabled = false },
       image = {},

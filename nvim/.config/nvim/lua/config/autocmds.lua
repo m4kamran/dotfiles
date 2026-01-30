@@ -2,10 +2,21 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
+-- Cache ESLint availability per buffer
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.name == "eslint" then
+      vim.b[args.buf].has_eslint = true
+    end
+  end,
+  desc = "Detect ESLint LSP attachment",
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
-  callback = function()
-    if vim.fn.exists(":EslintFixAll") == 2 then
+  callback = function(args)
+    if vim.b[args.buf].has_eslint then
       vim.cmd("silent! EslintFixAll")
     end
   end,
@@ -15,6 +26,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 local function setup_dynamic_diagnostics()
   local current_mode = "virtual_text"
   local timer = vim.uv.new_timer()
+  local diag_grp = vim.api.nvim_create_augroup("DynamicDiagnostics", { clear = true })
 
   local function show_virtual_lines()
     if current_mode ~= "virtual_lines" then
@@ -37,6 +49,7 @@ local function setup_dynamic_diagnostics()
   end
 
   vim.api.nvim_create_autocmd("CursorHold", {
+    group = diag_grp,
     callback = function()
       local line = vim.api.nvim_win_get_cursor(0)[1]
       local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
@@ -49,15 +62,30 @@ local function setup_dynamic_diagnostics()
 
   -- Only reset on CursorMoved (not CursorMovedI) to reduce overhead
   vim.api.nvim_create_autocmd({ "CursorMoved", "InsertLeave", "BufLeave" }, {
+    group = diag_grp,
     callback = function()
       -- Skip if already in virtual_text mode
       if current_mode == "virtual_text" then
         return
       end
-      timer:stop()
-      timer:start(100, 0, vim.schedule_wrap(show_virtual_text))
+      if timer then
+        timer:stop()
+        timer:start(100, 0, vim.schedule_wrap(show_virtual_text))
+      end
     end,
     desc = "Reset to virtual text display with debouncing",
+  })
+
+  -- Cleanup timer on exit to prevent leaks
+  vim.api.nvim_create_autocmd("VimLeavePre", {
+    group = diag_grp,
+    callback = function()
+      if timer then
+        timer:stop()
+        timer:close()
+      end
+    end,
+    desc = "Cleanup diagnostic timer",
   })
 
   show_virtual_text()
@@ -67,7 +95,9 @@ end
 setup_dynamic_diagnostics()
 
 -- Add generated sources to jdtls classpath (cached per buffer)
+local jdtls_grp = vim.api.nvim_create_augroup("JdtlsSetup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
+  group = jdtls_grp,
   pattern = "java",
   callback = function(args)
     -- Skip if already processed for this buffer
@@ -89,3 +119,38 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   desc = "Add generated sources to jdtls classpath",
 })
+
+-- CMD line
+-- local cmdGrp = vim.api.nvim_create_augroup("cmdline_height", { clear = true })
+--
+-- local function set_cmdheight(val)
+--   if vim.opt.cmdheight:get() ~= val then
+--     vim.opt.cmdheight = val
+--     vim.cmd.redrawstatus()
+--   end
+-- end
+--
+-- vim.api.nvim_create_autocmd("CmdlineEnter", {
+--   group = cmdGrp,
+--   callback = function()
+--     if vim.fn.getcmdtype() == ":" then
+--       set_cmdheight(1)
+--     end
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("CmdlineChanged", {
+--   group = cmdGrp,
+--   callback = function()
+--     if vim.fn.getcmdtype() == ":" and vim.fn.getcmdline() == "" then
+--       set_cmdheight(0)
+--     end
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("CmdlineLeave", {
+--   group = cmdGrp,
+--   callback = function()
+--     set_cmdheight(0)
+--   end,
+-- })

@@ -1,18 +1,6 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
--- Terminal with border
-vim.keymap.set("n", "<C-_>", function()
-  Snacks.terminal.toggle(nil, {
-    cwd = vim.fn.getcwd(),
-    win = {
-      relative = "editor",
-      position = "bottom",
-      height = 0.6,
-    },
-  })
-end, { desc = "Term toggle" })
-
 -- Delete without yanking
 vim.keymap.set("n", "d", '"_d')
 vim.keymap.set("v", "d", '"_d')
@@ -33,8 +21,7 @@ vim.keymap.set("n", "q", "<Nop>", { desc = "Disabled (use Q for macro)", noremap
 
 -- Diff View
 -- vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
-vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Git Diff (vscode-diff)" })
-vim.keymap.set("n", "<leader>gm", "<cmd>CodeDiff merge %<cr>", { desc = "Merge conflicts (vscode-diff)" })
+vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Git Diff (CodeDiff)" })
 
 -- Lsp Lines
 vim.keymap.set("n", "<leader>ue", function()

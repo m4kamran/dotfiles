@@ -1,9 +1,9 @@
-# shell-integration = zsh
+shell-integration = zsh
 
 # Force Nushell to use ~/.config/nushell instead of ~/Library/Application Support/nushell
 env = XDG_CONFIG_HOME=/Users/muhammad.kamran/.config
 
-font-size = 17
+font-size = 15
 font-family = "JetBrains Mono NFM Regular"
 # font-family = "Berkeley Mono Trial"
 window-inherit-font-size = false
@@ -34,7 +34,7 @@ cursor-color = #c9c7cd
 selection-background = #3C3B3E
 selection-foreground = #c9c7cd
 
-background = #000000
+background = #000000 
 
 keybind = global:ctrl+shift+f=toggle_quick_terminal
 
@@ -47,3 +47,5 @@ keybind = shift+enter=text:\x1b\r
 # Clipboard paste settings to prevent missing text
 clipboard-paste-protection = false
 clipboard-paste-bracketed-safe = true
+
+command = /bin/zsh

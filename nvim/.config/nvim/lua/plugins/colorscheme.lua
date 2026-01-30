@@ -72,11 +72,146 @@ return {
       })
     end,
   },
+  {
+    "sainnhe/gruvbox-material",
+    lazy = false,
+    config = function()
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_transparent_background = 2
+      vim.g.gruvbox_material_float_style = "blend"
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("custom_highlights_gruvboxmaterial", {}),
+        pattern = "gruvbox-material",
+        callback = function()
+          local config = vim.fn["gruvbox_material#get_configuration"]()
+          local palette =
+            vim.fn["gruvbox_material#get_palette"](config.background, config.foreground, config.colors_override)
+          local set_hl = vim.fn["gruvbox_material#highlight"]
+
+          set_hl("NeoTreeDirectoryName", palette.blue, palette.none)
+          set_hl("NeoTreeDirectoryIcon", palette.yellow, palette.none)
+          set_hl("NeoTreeWinSeparator", palette.bg_dim, palette.none)
+          set_hl("FloatBorder", palette.bg_dim, palette.none)
+          set_hl("WinBar", palette.grey1, palette.none)
+          set_hl("WinBarNC", palette.grey0, palette.none)
+        end,
+      })
+    end,
+  },
+
+  {
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nordic").setup({
+        -- This callback can be used to override the colors used in the base palette.
+        on_palette = function(palette) end,
+        -- This callback can be used to override the colors used in the extended palette.
+        after_palette = function(palette) end,
+        -- This callback can be used to override highlights before they are applied.
+        on_highlight = function(highlights, palette) end,
+        -- Enable bold keywords.
+        bold_keywords = false,
+        -- Enable italic comments.
+        italic_comments = true,
+        -- Enable editor background transparency.
+        transparent = {
+          -- Enable transparent background.
+          bg = true,
+          -- Enable transparent background for floating windows.
+          float = true,
+        },
+        -- Enable brighter float border.
+        bright_border = false,
+        -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+        reduced_blue = true,
+        -- Swap the dark background with the normal one.
+        swap_backgrounds = false,
+        -- Cursorline options.  Also includes visual/selection.
+        cursorline = {
+          -- Bold font in cursorline.
+          bold = false,
+          -- Bold cursorline number.
+          bold_number = true,
+          -- Available styles: 'dark', 'light'.
+          theme = "dark",
+          -- Blending the cursorline bg with the buffer bg.
+          blend = 0.85,
+        },
+        noice = {
+          -- Available styles: `classic`, `flat`.
+          style = "flat",
+        },
+        telescope = {
+          -- Available styles: `classic`, `flat`.
+          style = "flat",
+        },
+        leap = {
+          -- Dims the backdrop when using leap.
+          dim_backdrop = false,
+        },
+        ts_context = {
+          -- Enables dark background for treesitter-context window
+          dark_background = true,
+        },
+      })
+    end,
+  },
+
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("kanagawa").setup({
+        compile = false,
+        undercurl = true,
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = false },
+        statementStyle = { bold = false },
+        typeStyle = {},
+        transparent = true,
+        dimInactive = false,
+        terminalColors = true,
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "none",
+              },
+            },
+          },
+        },
+        overrides = function(colors)
+          local theme = colors.theme
+          return {
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            NeoTreeWinSeparator = { fg = theme.ui.bg_dim, bg = "none" },
+            WinBar = { fg = theme.ui.special, bg = "none" },
+            WinBarNC = { fg = theme.ui.special, bg = "none" },
+          }
+        end,
+        theme = "wave",
+        background = {
+          dark = "wave",
+          light = "lotus",
+        },
+      })
+    end,
+  },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe", -- Set your preferred colorscheme here
+      colorscheme = "kanagawa", -- Set your preferred colorscheme here
     },
   },
 }
