@@ -16,7 +16,37 @@ local extend_base = function(value)
   return vim.tbl_extend("force", base, value)
 end
 
+local mocha = extend_base({
+  rosewater = "#ea83a5",
+  flamingo = "#ed96b3",
+  pink = "#f2a7c5",
+  text = "#cdd6f4",
+  subtext1 = "#bac2de",
+  subtext0 = "#a6adc8",
+  overlay2 = "#9399b2",
+  overlay1 = "#7f849c",
+  overlay0 = "#6c7086",
+  surface2 = "#585b70",
+  surface1 = "#45475a",
+  surface0 = "#313244",
+  base = "#1e1e2e",
+  mantle = "#181825",
+  crust = "#11111b",
+})
+
 return {
+  {
+    "folke/tokyonight.nvim",
+    enabled = false,
+  },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  --   opts = {
+  --     transparent = true,
+  --     theme_variant = "dawn",
+  --   },
+  -- },
   {
     "catppuccin/nvim",
     lazy = false,
@@ -27,6 +57,7 @@ return {
           solid = false, -- use solid styling for floating windows, see |winborder|
         },
         color_overrides = {
+          mocha = mocha,
           frappe = extend_base({
             rosewater = "#e29eca",
             flamingo = "#e8b0d4",
@@ -197,6 +228,8 @@ return {
             NeoTreeWinSeparator = { fg = theme.ui.bg_dim, bg = "none" },
             WinBar = { fg = theme.ui.special, bg = "none" },
             WinBarNC = { fg = theme.ui.special, bg = "none" },
+            -- Cursor colors per mode
+            CursorInsert = { bg = "#98bb6c", fg = theme.ui.bg },
           }
         end,
         theme = "wave",
@@ -207,7 +240,6 @@ return {
       })
     end,
   },
-
   {
     "LazyVim/LazyVim",
     opts = {

@@ -1,14 +1,7 @@
--- return {
---   "Wansmer/symbol-usage.nvim",
---   event = "BufReadPre", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
---   opts = {
---     vt_position = "end_of_line", -- position of virtual text, can be 'eol' or 'inline'
---   },
--- }
-
 return {
   {
     "romus204/referencer.nvim",
+    enabled = false,
     config = function()
       require("referencer").setup({
         enable = true, -- enable after LSP attach

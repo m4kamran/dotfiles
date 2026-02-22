@@ -1,5 +1,13 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+--
+--
+
+local function open_terminal()
+  Snacks.terminal(nil, { cwd = LazyVim.root(), win = { height = 0.5 } })
+end
+vim.keymap.set({ "n", "t" }, "<c-/>", open_terminal, { desc = "Terminal (Root Dir)" })
+vim.keymap.set({ "n", "t" }, "<c-_>", open_terminal, { desc = "Terminal (Root Dir)" })
 
 -- Delete without yanking
 vim.keymap.set("n", "d", '"_d')
@@ -20,8 +28,10 @@ vim.keymap.set("n", "Q", "q", { desc = "Record macro", noremap = true })
 vim.keymap.set("n", "q", "<Nop>", { desc = "Disabled (use Q for macro)", noremap = true })
 
 -- Diff View
--- vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
-vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Git Diff (CodeDiff)" })
+vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" })
+-- vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Git Diff (CodeDiff)" })
+vim.keymap.set("n", "<leader>gf", ":DiffviewFileHistory %<cr>", { desc = "File History" })
+vim.keymap.set("n", "<leader>gH", ":DiffviewOpen develop...HEAD %<cr>", { desc = "Branch History" })
 
 -- Lsp Lines
 vim.keymap.set("n", "<leader>ue", function()
@@ -32,20 +42,3 @@ vim.keymap.set("n", "<leader>ue", function()
 end, { desc = "Toggle diagnostic [l]ines" })
 
 vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
-
--- vim.keymap.set("n", "<leader>o", "<cmd>:Other<CR>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<leader>os", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
---
--- -- Harlequin SQL IDE (floating terminal like lazygit)
--- vim.keymap.set("n", "<leader>D", function()
---   Snacks.terminal.open("hq", {
---     cwd = vim.fn.getcwd(),
---     win = {
---       style = "float",
---       border = "rounded",
---       width = 0.9,
---       height = 0.9,
---     },
---   })
--- end, { desc = "Harlequin SQL IDE" })

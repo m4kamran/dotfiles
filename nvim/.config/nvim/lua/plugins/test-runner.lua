@@ -6,7 +6,8 @@ local function detect_framework()
   local cwd = vim.fn.getcwd()
 
   -- Check for Vitest
-  if vim.fn.filereadable(cwd .. "/vitest.config.ts") == 1
+  if
+    vim.fn.filereadable(cwd .. "/vitest.config.ts") == 1
     or vim.fn.filereadable(cwd .. "/vitest.config.js") == 1
     or vim.fn.filereadable(cwd .. "/vitest.config.mts") == 1
   then
@@ -14,7 +15,8 @@ local function detect_framework()
   end
 
   -- Check for Jest
-  if vim.fn.filereadable(cwd .. "/jest.config.ts") == 1
+  if
+    vim.fn.filereadable(cwd .. "/jest.config.ts") == 1
     or vim.fn.filereadable(cwd .. "/jest.config.js") == 1
     or vim.fn.filereadable(cwd .. "/jest.config.mjs") == 1
   then
@@ -33,13 +35,21 @@ local function detect_framework()
     end
   end
 
+  -- Check for Python/pytest
+  if
+    vim.fn.filereadable(cwd .. "/pyproject.toml") == 1
+    or vim.fn.filereadable(cwd .. "/pytest.ini") == 1
+    or vim.fn.filereadable(cwd .. "/setup.py") == 1
+    or vim.fn.filereadable(cwd .. "/conftest.py") == 1
+  then
+    return "pytest"
+  end
+
   -- Check for Java/JUnit (Maven or Gradle)
   if vim.fn.filereadable(cwd .. "/pom.xml") == 1 then
     return "maven"
   end
-  if vim.fn.filereadable(cwd .. "/build.gradle") == 1
-    or vim.fn.filereadable(cwd .. "/build.gradle.kts") == 1
-  then
+  if vim.fn.filereadable(cwd .. "/build.gradle") == 1 or vim.fn.filereadable(cwd .. "/build.gradle.kts") == 1 then
     return "gradle"
   end
 
@@ -91,9 +101,18 @@ local function get_test_command(framework, file, test_name)
   elseif framework == "gradle" then
     local class_name = vim.fn.fnamemodify(file, ":t:r")
     if test_name then
-      return string.format("./gradlew test --tests '%s.%s' --console=plain -x compileJava -x compileTestJava", class_name, test_name)
+      return string.format(
+        "./gradlew test --tests '%s.%s' --console=plain -x compileJava -x compileTestJava",
+        class_name,
+        test_name
+      )
     end
     return string.format("./gradlew test --tests '%s' --console=plain -x compileJava -x compileTestJava", class_name)
+  elseif framework == "pytest" then
+    if test_name then
+      return string.format("uv run pytest %s::%s -v", relative_file, test_name)
+    end
+    return string.format("uv run pytest %s -v", relative_file)
   end
 
   return nil
@@ -113,8 +132,11 @@ local function find_nearest_test()
     local node_type = node:type()
 
     -- JavaScript/TypeScript: look for test/it/describe calls
-    if filetype == "javascript" or filetype == "typescript"
-      or filetype == "javascriptreact" or filetype == "typescriptreact"
+    if
+      filetype == "javascript"
+      or filetype == "typescript"
+      or filetype == "javascriptreact"
+      or filetype == "typescriptreact"
     then
       if node_type == "call_expression" then
         local func_node = node:field("function")[1]
@@ -144,6 +166,32 @@ local function find_nearest_test()
         local name_node = node:field("name")[1]
         if name_node then
           return vim.treesitter.get_node_text(name_node, 0)
+        end
+      end
+    end
+
+    -- Python: look for function definition (test_* functions)
+    if filetype == "python" then
+      if node_type == "function_definition" then
+        local name_node = node:field("name")[1]
+        if name_node then
+          local func_name = vim.treesitter.get_node_text(name_node, 0)
+          -- Check if it's a test function or method
+          if func_name:match("^test_") then
+            -- Check if inside a class (test method)
+            local parent = node:parent()
+            while parent do
+              if parent:type() == "class_definition" then
+                local class_name_node = parent:field("name")[1]
+                if class_name_node then
+                  local class_name = vim.treesitter.get_node_text(class_name_node, 0)
+                  return class_name .. "::" .. func_name
+                end
+              end
+              parent = parent:parent()
+            end
+            return func_name
+          end
         end
       end
     end

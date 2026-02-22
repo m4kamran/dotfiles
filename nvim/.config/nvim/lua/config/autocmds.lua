@@ -24,29 +24,49 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 local function setup_dynamic_diagnostics()
-  local current_mode = "virtual_text"
+  local current_mode
   local timer = vim.uv.new_timer()
   local diag_grp = vim.api.nvim_create_augroup("DynamicDiagnostics", { clear = true })
 
-  local function show_virtual_lines()
-    if current_mode ~= "virtual_lines" then
-      current_mode = "virtual_lines"
-      vim.diagnostic.config({
-        virtual_text = false,
-        virtual_lines = { current_line = true },
-      })
-    end
+  local function is_virtual_text_mode()
+    local cfg = vim.diagnostic.config()
+    return cfg.virtual_text ~= false and cfg.virtual_lines == false
   end
 
-  local function show_virtual_text()
-    if current_mode ~= "virtual_text" then
-      current_mode = "virtual_text"
-      vim.diagnostic.config({
-        virtual_text = true,
-        virtual_lines = false,
-      })
-    end
+  local function is_virtual_lines_mode()
+    local cfg = vim.diagnostic.config()
+    return cfg.virtual_text == false and type(cfg.virtual_lines) == "table"
   end
+
+  local function show_virtual_lines(force)
+    if not force and current_mode == "virtual_lines" and is_virtual_lines_mode() then
+      return
+    end
+    current_mode = "virtual_lines"
+    vim.diagnostic.config({
+      virtual_text = false,
+      virtual_lines = { current_line = true },
+    })
+  end
+
+  local function show_virtual_text(force)
+    if not force and current_mode == "virtual_text" and is_virtual_text_mode() then
+      return
+    end
+    current_mode = "virtual_text"
+    vim.diagnostic.config({
+      virtual_text = true,
+      virtual_lines = false,
+    })
+  end
+
+  vim.api.nvim_create_autocmd({ "VimEnter", "LspAttach" }, {
+    group = diag_grp,
+    callback = function()
+      show_virtual_text(true)
+    end,
+    desc = "Ensure diagnostics start in virtual text mode",
+  })
 
   vim.api.nvim_create_autocmd("CursorHold", {
     group = diag_grp,
@@ -64,8 +84,8 @@ local function setup_dynamic_diagnostics()
   vim.api.nvim_create_autocmd({ "CursorMoved", "InsertLeave", "BufLeave" }, {
     group = diag_grp,
     callback = function()
-      -- Skip if already in virtual_text mode
-      if current_mode == "virtual_text" then
+      -- Skip if config is already in virtual_text mode
+      if current_mode == "virtual_text" and is_virtual_text_mode() then
         return
       end
       if timer then
@@ -95,30 +115,30 @@ end
 setup_dynamic_diagnostics()
 
 -- Add generated sources to jdtls classpath (cached per buffer)
-local jdtls_grp = vim.api.nvim_create_augroup("JdtlsSetup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  group = jdtls_grp,
-  pattern = "java",
-  callback = function(args)
-    -- Skip if already processed for this buffer
-    if vim.b[args.buf].jdtls_root_cached then
-      return
-    end
-    vim.b[args.buf].jdtls_root_cached = true
-
-    local ok, jdtls = pcall(require, "jdtls")
-    if not ok then
-      return
-    end
-
-    local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml" })
-    if root_dir then
-      local generated_sources = root_dir .. "/target/generated-sources/messaging-manifest"
-      vim.fn.setenv("JAVA_SOURCE_PATHS", generated_sources)
-    end
-  end,
-  desc = "Add generated sources to jdtls classpath",
-})
+-- local jdtls_grp = vim.api.nvim_create_augroup("JdtlsSetup", { clear = true })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = jdtls_grp,
+--   pattern = "java",
+--   callback = function(args)
+--     -- Skip if already processed for this buffer
+--     if vim.b[args.buf].jdtls_root_cached then
+--       return
+--     end
+--     vim.b[args.buf].jdtls_root_cached = true
+--
+--     local ok, jdtls = pcall(require, "jdtls")
+--     if not ok then
+--       return
+--     end
+--
+--     local root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml" })
+--     if root_dir then
+--       local generated_sources = root_dir .. "/target/generated-sources/messaging-manifest"
+--       vim.fn.setenv("JAVA_SOURCE_PATHS", generated_sources)
+--     end
+--   end,
+--   desc = "Add generated sources to jdtls classpath",
+-- })
 
 -- CMD line
 -- local cmdGrp = vim.api.nvim_create_augroup("cmdline_height", { clear = true })

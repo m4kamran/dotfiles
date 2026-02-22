@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   opts = function()
-    local custom_theme = require("lualine.themes.iceberg_dark")
+    local custom_theme = require("lualine.themes.gruvbox-material")
     -- Remove background colors from b and c sections only, keep a (mode) colored
     for _, mode in pairs(custom_theme) do
       if mode.b then

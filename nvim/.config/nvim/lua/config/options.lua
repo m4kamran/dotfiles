@@ -5,10 +5,10 @@ vim.g.ai_cmp = false
 vim.g.lazyvim_picker = "snacks"
 vim.g.lazyvim_blink_main = false
 vim.g.root_spec = { "cwd" }
-vim.g.lazyvim_python_lsp = "pyright"
+vim.g.lazyvim_python_lsp = "basedpyright"
 
 vim.opt.cursorline = true
-vim.opt.smoothscroll = false
+vim.opt.smoothscroll = true
 vim.opt.cursorlineopt = "number"
 vim.opt.relativenumber = false
 vim.opt.wrap = false
@@ -18,21 +18,24 @@ vim.opt.expandtab = true
 vim.opt.sessionoptions = { "buffers", "curdir", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shell = "zsh"
+-- vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:block-CursorInsert,r-cr-o:block-CursorReplace"
+vim.opt.autoread = true
+vim.opt.swapfile = false
 
 vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%l %s"
 vim.opt.numberwidth = 4
 vim.opt.winborder = "none"
-vim.opt.diffopt = {
-  "internal",
-  "filler",
-  "closeoff",
-  "context:12",
-  "algorithm:histogram",
-  "linematch:200",
-  "indent-heuristic",
-  "iwhite", -- I toggle this one, it doesn't fit all cases.
-}
+-- vim.opt.diffopt = {
+--   "internal",
+--   "filler",
+--   "closeoff",
+--   "context:12",
+--   "algorithm:histogram",
+--   "linematch:200",
+--   "indent-heuristic",
+--   "iwhite", -- I toggle this one, it doesn't fit all cases.
+-- }
 
 -- vim.filetype.add({
 --   pattern = {

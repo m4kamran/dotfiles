@@ -4,22 +4,21 @@ return {
   opts = {
     lsp = {
       hover = {
-        enabled = false,
+        enabled = true,
         silent = true,
-        opts = {
-          border = {
-            style = "rounded",
-            padding = { 0, 0 },
-          },
-        },
       },
       signature = {
-        enabled = false,
+        enabled = true,
+      },
+      -- Shared defaults for hover and signature
+      documentation = {
+        view = "hover",
         opts = {
-          border = {
-            style = "rounded",
-            padding = { 0, 0 },
-          },
+          lang = "markdown",
+          replace = true,
+          render = "plain",
+          format = { "{message}" },
+          win_options = { concealcursor = "n", conceallevel = 3 },
         },
       },
     },
@@ -32,6 +31,15 @@ return {
     presets = {
       bottom_search = true,
       lsp_doc_border = true,
+    },
+    views = {
+      hover = {
+        border = {
+          style = "single",
+          padding = { 0, 0 },
+        },
+        position = { row = 2, col = 0 },
+      },
     },
   },
 }

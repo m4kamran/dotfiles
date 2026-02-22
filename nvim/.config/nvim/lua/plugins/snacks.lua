@@ -28,7 +28,25 @@ return {
         enabled = true,
         modes = { "v" },
       },
-      indent = { enabled = false },
+      indent = {
+        enabled = false,
+        indent = {
+          char = "┊", -- dotted, very subtle
+          hl = "NonText", -- more muted than Comment
+        },
+        animate = { enabled = false },
+        scope = {
+          enabled = true,
+          char = "┊",
+          hl = "NonText", -- more muted
+          underline = false, -- cleaner without underline
+          only_current = true, -- only highlight scope in active window
+        },
+        blank = {
+          char = " ", -- space on blank lines, stops the endless lines
+          hl = "NonText",
+        },
+      },
       animate = { enabled = false },
       image = {},
       dashboard = {
