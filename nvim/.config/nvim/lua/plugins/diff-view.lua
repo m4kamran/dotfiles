@@ -3,7 +3,7 @@ return {
     "rickhowe/diffchar.vim",
     config = function()
       -- Use bold/underline on adjacent chars instead of virtual blank columns.
-      vim.g.DiffDelPosVisible = 1
+      vim.g.DiffDelPosVisible = 0
 
       -- Disable diffchar default keymaps.
       -- See: https://github.com/rickhowe/diffchar.vim/issues/21
@@ -70,6 +70,12 @@ return {
           },
         },
         hooks = {
+          diff_buf_win_enter = function(bufnr, winid, ctx)
+            if ctx.layout_name:match("^diff2") and ctx.symbol == "a" then
+              -- Left panel (old state): show DiffAdd as red (delete) instead of green
+              vim.opt_local.winhl:prepend("DiffAdd:DiffviewDiffAddAsDelete,DiffDelete:DiffviewDiffDeleteDim")
+            end
+          end,
           view_enter = function(bufnr)
             vim.diagnostic.config({
               virtual_lines = false,

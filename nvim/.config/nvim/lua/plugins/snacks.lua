@@ -47,6 +47,7 @@ return {
           hl = "NonText",
         },
       },
+      scroll = { enabled = false },
       animate = { enabled = false },
       image = {},
       dashboard = {
@@ -56,7 +57,6 @@ return {
         },
       },
       lazygit = {
-        toggle = true,
         config = {
           os = {
             edit = '[ -z ""$NVIM"" ] && (nvim -- {{filename}}) || (nvim --server ""$NVIM"" --remote-send ""q"" && nvim --server ""$NVIM"" --remote {{filename}})',

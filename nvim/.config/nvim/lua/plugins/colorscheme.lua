@@ -98,6 +98,14 @@ return {
             FloatBorder = { fg = "#1a1a1a", bg = "#000000" },
             WinBar = { fg = c.overlay2, bg = "NONE" },
             WinBarNC = { fg = c.overlay2, bg = "NONE" },
+            -- GitHub/GitLab-style diff backgrounds
+            DiffAdd = { bg = "#2a4a2a" },
+            DiffDelete = { bg = "#4a2a2a" },
+            DiffChange = { bg = "#2a3a4a" },
+            DiffText = { bg = "#3a5a3a" },
+            -- Diffview-specific highlights (used with enhanced_diff_hl)
+            DiffviewDiffAddAsDelete = { bg = "#4a2a2a" },
+            DiffviewDiffDelete = { bg = "NONE", fg = "#3a3a3a" },
           }
         end,
       })
@@ -241,9 +249,75 @@ return {
     end,
   },
   {
+    "dgox16/oldworld.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("oldworld").setup({
+        transparent = true,
+        integrations = {
+          neo_tree = true,
+        },
+        highlight_overrides = {
+          Normal = { bg = "none" },
+          NormalNC = { bg = "none" },
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          SignColumn = { bg = "none" },
+          EndOfBuffer = { bg = "none" },
+          NeoTreeNormal = { bg = "none" },
+          NeoTreeNormalNC = { bg = "none" },
+        },
+      })
+    end,
+  },
+
+  {
+    "topazape/oldtale.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("oldtale").setup({
+        highlight_overrides = {
+          Normal = { bg = "none" },
+          NormalNC = { bg = "none" },
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          SignColumn = { bg = "none" },
+          EndOfBuffer = { bg = "none" },
+          Winbar = { bg = "none" },
+          WinbarNC = { bg = "none" },
+        },
+      })
+    end,
+  },
+
+  {
+    "wtfox/jellybeans.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+      italics = true,
+      bold = false,
+      flat_ui = true, -- toggles "flat UI" for pickers
+      background = {
+        dark = "jellybeans", -- default dark palette
+        light = "jellybeans_light", -- default light palette
+      },
+      plugins = {
+        all = false,
+        auto = true, -- auto-detect installed plugins via lazy.nvim
+      },
+      on_highlights = function(highlights, colors) end,
+      on_colors = function(colors) end,
+    },
+  },
+
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa", -- Set your preferred colorscheme here
+      colorscheme = "catppuccin-macchiato", -- Set your preferred colorscheme here
     },
   },
 }
