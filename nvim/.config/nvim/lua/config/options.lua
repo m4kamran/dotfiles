@@ -34,6 +34,7 @@ vim.opt.diffopt = {
   "algorithm:histogram",
   "linematch:200",
   "indent-heuristic",
+  "inline:word", -- Nvim 0.12: word-level inline diff (GitHub/GitLab style)
   "iwhite", -- I toggle this one, it doesn't fit all cases.
 }
 

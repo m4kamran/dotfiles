@@ -1,19 +1,5 @@
 return {
   {
-    "rickhowe/diffchar.vim",
-    config = function()
-      -- Use bold/underline on adjacent chars instead of virtual blank columns.
-      vim.g.DiffDelPosVisible = 0
-
-      -- Disable diffchar default keymaps.
-      -- See: https://github.com/rickhowe/diffchar.vim/issues/21
-      vim.cmd([[
-      nmap <Leader>g <Nop>
-      nmap <Leader>p <Nop>
-    ]])
-    end,
-  },
-  {
     "dlyongemallo/diffview.nvim",
     config = function()
       local actions = require("diffview.actions")

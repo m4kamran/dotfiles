@@ -103,6 +103,8 @@ return {
             DiffDelete = { bg = "#4a2a2a" },
             DiffChange = { bg = "#2a3a4a" },
             DiffText = { bg = "#3a5a3a" },
+            -- Nvim 0.12: inline added text within a changed line (bright green)
+            DiffTextAdd = { bg = "#3a6a3a" },
             -- Diffview-specific highlights (used with enhanced_diff_hl)
             DiffviewDiffAddAsDelete = { bg = "#4a2a2a" },
             DiffviewDiffDelete = { bg = "NONE", fg = "#3a3a3a" },
@@ -317,7 +319,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-macchiato", -- Set your preferred colorscheme here
+      colorscheme = "kanagawa", -- Set your preferred colorscheme here
     },
   },
 }
