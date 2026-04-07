@@ -3,6 +3,15 @@ return {
     "dlyongemallo/diffview.nvim",
     config = function()
       local actions = require("diffview.actions")
+
+      -- Define per-side diff highlight groups
+      -- Left panel (old/before): red tones
+      vim.api.nvim_set_hl(0, "DiffviewOldChange", { bg = "#2e2020" })
+      vim.api.nvim_set_hl(0, "DiffviewOldText", { bg = "#5a2020" })
+      -- Right panel (new/after): green tones
+      vim.api.nvim_set_hl(0, "DiffviewNewChange", { bg = "#1e2e1e" })
+      vim.api.nvim_set_hl(0, "DiffviewNewText", { bg = "#2a5a2a" })
+
       require("diffview").setup({
         enhanced_diff_hl = true,
         diff_binaries = false,
@@ -57,9 +66,23 @@ return {
         },
         hooks = {
           diff_buf_win_enter = function(bufnr, winid, ctx)
-            if ctx.layout_name:match("^diff2") and ctx.symbol == "a" then
-              -- Left panel (old state): show DiffAdd as red (delete) instead of green
-              vim.opt_local.winhl:prepend("DiffAdd:DiffviewDiffAddAsDelete,DiffDelete:DiffviewDiffDeleteDim")
+            if ctx.layout_name:match("^diff2") then
+              if ctx.symbol == "a" then
+                -- Left panel (old/before): red tones
+                vim.opt_local.winhl:prepend(table.concat({
+                  "DiffAdd:DiffviewDiffAddAsDelete",
+                  "DiffDelete:DiffviewDiffDeleteDim",
+                  "DiffChange:DiffviewOldChange",
+                  "DiffText:DiffviewOldText",
+                }, ","))
+              elseif ctx.symbol == "b" then
+                -- Right panel (new/after): green tones
+                vim.opt_local.winhl:prepend(table.concat({
+                  "DiffDelete:DiffviewDiffDeleteDim",
+                  "DiffChange:DiffviewNewChange",
+                  "DiffText:DiffviewNewText",
+                }, ","))
+              end
             end
           end,
           view_enter = function(bufnr)

@@ -42,3 +42,12 @@ vim.keymap.set("n", "<leader>ue", function()
 end, { desc = "Toggle diagnostic [l]ines" })
 
 vim.keymap.set({ "n", "i", "v" }, "<D-s>", "<Esc>:w<CR>", { noremap = true, silent = true })
+
+-- Incremental treesitter selection (built-in 0.12+)
+vim.keymap.set("x", "<A-o>", function()
+  require("vim.treesitter._select").select_parent(vim.v.count1)
+end, { desc = "Select parent treesitter node" })
+
+vim.keymap.set("x", "<A-i>", function()
+  require("vim.treesitter._select").select_child(vim.v.count1)
+end, { desc = "Select child treesitter node" })

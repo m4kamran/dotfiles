@@ -98,15 +98,15 @@ return {
             FloatBorder = { fg = "#1a1a1a", bg = "#000000" },
             WinBar = { fg = c.overlay2, bg = "NONE" },
             WinBarNC = { fg = c.overlay2, bg = "NONE" },
-            -- GitHub/GitLab-style diff backgrounds
+            -- Global diff highlights (used outside diffview, e.g. :diffsplit, gitsigns)
             DiffAdd = { bg = "#2a4a2a" },
             DiffDelete = { bg = "#4a2a2a" },
             DiffChange = { bg = "#2a3a4a" },
             DiffText = { bg = "#3a5a3a" },
-            -- Nvim 0.12: inline added text within a changed line (bright green)
             DiffTextAdd = { bg = "#3a6a3a" },
-            -- Diffview-specific highlights (used with enhanced_diff_hl)
-            DiffviewDiffAddAsDelete = { bg = "#4a2a2a" },
+
+            -- Diffview: known groups (created by diffview's hl.lua)
+            DiffviewDiffAddAsDelete = { bg = "#3a2020" },
             DiffviewDiffDelete = { bg = "NONE", fg = "#3a3a3a" },
           }
         end,
