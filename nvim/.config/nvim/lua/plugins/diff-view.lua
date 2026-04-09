@@ -66,6 +66,9 @@ return {
         },
         hooks = {
           diff_buf_win_enter = function(bufnr, winid, ctx)
+            vim.wo[winid].foldenable = true
+            vim.wo[winid].foldlevel = 0
+
             if ctx.layout_name:match("^diff2") then
               if ctx.symbol == "a" then
                 -- Left panel (old/before): red tones

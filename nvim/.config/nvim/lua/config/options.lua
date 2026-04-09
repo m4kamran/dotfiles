@@ -23,7 +23,11 @@ vim.opt.autoread = true
 vim.opt.swapfile = false
 
 vim.opt.signcolumn = "yes"
-vim.opt.statuscolumn = "%l %s"
+vim.opt.foldcolumn = "auto:1"
+vim.opt.statuscolumn = "%C %l %s"
+vim.opt.fillchars:append({
+  foldinner = " ",
+})
 vim.opt.numberwidth = 4
 vim.opt.winborder = "none"
 vim.opt.diffopt = {

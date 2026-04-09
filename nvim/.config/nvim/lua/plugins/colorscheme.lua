@@ -34,6 +34,16 @@ local mocha = extend_base({
   crust = "#11111b",
 })
 
+local pastel_diff = {
+  add = { fg = "#b8e3c6", bg = "#2c3d35" },
+  delete = { fg = "#f0c1cc", bg = "#433039" },
+  change = { fg = "#b7cdfa", bg = "#2e384d" },
+  text = { fg = "#dfc3f7", bg = "#433b56" },
+  text_add = { fg = "#c8ebd1", bg = "#365044" },
+  add_as_delete = { fg = "#e6b4c0", bg = "#3a2931" },
+  deleted = { fg = "#7d7888", bg = "NONE" },
+}
+
 return {
   {
     "folke/tokyonight.nvim",
@@ -99,15 +109,15 @@ return {
             WinBar = { fg = c.overlay2, bg = "NONE" },
             WinBarNC = { fg = c.overlay2, bg = "NONE" },
             -- Global diff highlights (used outside diffview, e.g. :diffsplit, gitsigns)
-            DiffAdd = { bg = "#2a4a2a" },
-            DiffDelete = { bg = "#4a2a2a" },
-            DiffChange = { bg = "#2a3a4a" },
-            DiffText = { bg = "#3a5a3a" },
-            DiffTextAdd = { bg = "#3a6a3a" },
+            DiffAdd = pastel_diff.add,
+            DiffDelete = pastel_diff.delete,
+            DiffChange = pastel_diff.change,
+            DiffText = pastel_diff.text,
+            DiffTextAdd = pastel_diff.text_add,
 
             -- Diffview: known groups (created by diffview's hl.lua)
-            DiffviewDiffAddAsDelete = { bg = "#3a2020" },
-            DiffviewDiffDelete = { bg = "NONE", fg = "#3a3a3a" },
+            DiffviewDiffAddAsDelete = pastel_diff.add_as_delete,
+            DiffviewDiffDelete = pastel_diff.deleted,
           }
         end,
       })
@@ -317,9 +327,58 @@ return {
   },
 
   {
+    "zitrocode/carvion.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+    },
+    config = function(_, opts)
+      require("carvion").setup(opts)
+
+      -- carvion doesn't expose an override hook, so patch highlights after it loads.
+      local apply_carvion_highlights = function()
+        local colors = require("carvion.colors")
+
+        for group, hl in pairs({
+          NormalFloat = { fg = colors.fg.default, bg = "NONE" },
+          FloatBorder = { fg = colors.border.subtle, bg = "NONE" },
+          FloatTitle = { fg = colors.colors.orange.base, bg = "NONE", bold = true },
+          NeoTreeDirectoryName = { fg = colors.colors.blue.base },
+          NeoTreeDirectoryIcon = { fg = colors.colors.orange.soft },
+          NeoTreeWinSeparator = { fg = colors.border.subtle, bg = "NONE" },
+          WinBar = { fg = colors.colors.orange.soft, bg = "NONE" },
+          WinBarNC = { fg = colors.colors.orange.soft, bg = "NONE" },
+          -- Global diff highlights (used outside diffview, e.g. :diffsplit, gitsigns)
+          DiffAdd = pastel_diff.add,
+          DiffDelete = pastel_diff.delete,
+          DiffChange = pastel_diff.change,
+          DiffText = pastel_diff.text,
+          DiffTextAdd = pastel_diff.text_add,
+          -- Diffview: known groups (created by diffview's hl.lua)
+          DiffviewDiffAddAsDelete = pastel_diff.add_as_delete,
+          DiffviewDiffDelete = pastel_diff.deleted,
+        }) do
+          vim.api.nvim_set_hl(0, group, hl)
+        end
+      end
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("custom_highlights_carvion", {}),
+        pattern = "carvion",
+        callback = apply_carvion_highlights,
+      })
+
+      if vim.g.colors_name == "carvion" then
+        apply_carvion_highlights()
+      end
+    end,
+  },
+
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa", -- Set your preferred colorscheme here
+      colorscheme = "catppuccin-frappe", -- Set your preferred colorscheme here
     },
   },
 }
