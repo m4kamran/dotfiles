@@ -305,6 +305,72 @@ return {
   },
 
   {
+    "ember-theme/nvim",
+    name = "ember",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("ember").setup({
+        variant = "ember", -- "ember" | "ember-soft" | "ember-light"
+        styles = {
+          comments = { italic = true },
+          keywords = { bold = false },
+          functions = {},
+          types = { bold = false },
+        },
+        on_highlights = function(highlights, theme)
+          -- Transparent backgrounds
+          highlights.Normal = { fg = highlights.Normal and highlights.Normal.fg, bg = "NONE" }
+          highlights.NormalNC = { fg = highlights.Normal and highlights.Normal.fg, bg = "NONE" }
+          highlights.NormalFloat = { fg = highlights.Normal and highlights.Normal.fg, bg = "NONE" }
+          highlights.FloatBorder = { fg = "#1a1a1a", bg = "NONE" }
+          highlights.FloatTitle = vim.tbl_extend("force", highlights.FloatTitle or {}, { bg = "NONE" })
+          highlights.SignColumn = { bg = "NONE" }
+          highlights.EndOfBuffer = { bg = "NONE" }
+
+          -- NeoTree
+          highlights.NeoTreeNormal = { bg = "NONE" }
+          highlights.NeoTreeNormalNC = { bg = "NONE" }
+          highlights.NeoTreeWinSeparator = { fg = "#1a1a1a", bg = "NONE" }
+
+          -- WinBar
+          highlights.WinBar = vim.tbl_extend("force", highlights.WinBar or {}, { bg = "NONE" })
+          highlights.WinBarNC = vim.tbl_extend("force", highlights.WinBarNC or {}, { bg = "NONE" })
+
+          -- Snacks picker — strip backgrounds for transparency
+          local picker_bg_groups = {
+            "SnacksPicker",
+            "SnacksPickerBorder",
+            "SnacksPickerInput",
+            "SnacksPickerInputBorder",
+            "SnacksPickerList",
+            "SnacksPickerListBorder",
+            "SnacksPickerPreview",
+            "SnacksPickerPreviewBorder",
+            "SnacksPickerBox",
+          }
+          for _, group in ipairs(picker_bg_groups) do
+            if highlights[group] then
+              highlights[group] = vim.tbl_extend("force", highlights[group], { bg = "NONE" })
+            end
+          end
+
+          -- Global diff highlights (matching catppuccin pastel_diff)
+          highlights.DiffAdd = pastel_diff.add
+          highlights.DiffDelete = pastel_diff.delete
+          highlights.DiffChange = pastel_diff.change
+          highlights.DiffText = pastel_diff.text
+          highlights.DiffTextAdd = pastel_diff.text_add
+
+          -- Diffview: known groups (created by diffview's hl.lua)
+          highlights.DiffviewDiffAddAsDelete = pastel_diff.add_as_delete
+          highlights.DiffviewDiffDelete = pastel_diff.deleted
+        end,
+      })
+    end,
+  },
+
+  {
     "wtfox/jellybeans.nvim",
     lazy = false,
     priority = 1000,
@@ -378,7 +444,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe", -- Set your preferred colorscheme here
+      colorscheme = "kanagawa", -- Set your preferred colorscheme here
     },
   },
 }

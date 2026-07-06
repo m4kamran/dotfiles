@@ -32,6 +32,30 @@ vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diff View" 
 -- vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Git Diff (CodeDiff)" })
 vim.keymap.set("n", "<leader>gf", ":DiffviewFileHistory %<cr>", { desc = "File History" })
 vim.keymap.set("n", "<leader>gH", ":DiffviewOpen develop...HEAD %<cr>", { desc = "Branch History" })
+-- vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewToggle<cr>", { desc = "Toggle Diffview" })
+--
+-- -- Diff working directory
+-- vim.keymap.set("n", "<leader>do", "<cmd>DiffviewOpen<cr>", { desc = "Diffview open" })
+-- vim.keymap.set("n", "<leader>dc", "<cmd>DiffviewClose<cr>", { desc = "Diffview close" })
+--
+-- -- File history
+-- vim.keymap.set("n", "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", { desc = "File history (current file)" })
+-- vim.keymap.set("n", "<leader>dH", "<cmd>DiffviewFileHistory<cr>", { desc = "File history (repo)" })
+--
+-- -- Visual mode: history for selection
+-- vim.keymap.set("v", "<leader>dh", "<Esc><cmd>'<,'>DiffviewFileHistory --follow<CR>", { desc = "Range history" })
+--
+-- -- Single line history
+-- vim.keymap.set("n", "<leader>dl", "<cmd>.DiffviewFileHistory --follow<CR>", { desc = "Line history" })
+--
+-- -- Diff against main/master branch (useful before merging)
+-- vim.keymap.set("n", "<leader>dm", function()
+--   -- Try main first, fall back to master
+--   local result = vim.fn.systemlist({ "git", "rev-parse", "--verify", "main" })
+--   local ok = vim.v.shell_error == 0 and result[1] ~= nil and result[1] ~= ""
+--   local branch = ok and "develop" or "main" or "master"
+--   vim.cmd("DiffviewOpen " .. branch)
+-- end, { desc = "Diff against develop/main/master" })
 
 -- Lsp Lines
 vim.keymap.set("n", "<leader>ue", function()

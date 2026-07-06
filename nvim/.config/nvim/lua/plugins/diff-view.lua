@@ -68,6 +68,7 @@ return {
           diff_buf_win_enter = function(bufnr, winid, ctx)
             vim.wo[winid].foldenable = true
             vim.wo[winid].foldlevel = 0
+            vim.wo[winid].wrap = true
 
             if ctx.layout_name:match("^diff2") then
               if ctx.symbol == "a" then

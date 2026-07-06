@@ -1,3 +1,39 @@
+local function open_lsp_list(opts)
+  return function()
+    opts.action({
+      on_list = function(list)
+        if #list.items == 0 then
+          vim.notify("No " .. opts.title:lower() .. " found", vim.log.levels.INFO)
+          return
+        end
+
+        local seen = {}
+        local items = {}
+        for _, item in ipairs(list.items) do
+          local key = table.concat({ item.filename or item.bufnr, item.lnum, item.col }, ":")
+          if not seen[key] then
+            seen[key] = true
+            items[#items + 1] = item
+          end
+        end
+
+        vim.fn.setqflist({}, " ", {
+          title = opts.title,
+          items = items,
+          context = list.context,
+        })
+
+        if opts.jump and #items == 1 then
+          vim.cmd("silent cc 1")
+          return
+        end
+
+        vim.cmd("botright copen 15")
+      end,
+    })
+  end
+end
+
 -- -- Helper to execute LSP code actions by kind
 -- local function lsp_action(action_kind)
 --   return function()
@@ -36,9 +72,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "folke/trouble.nvim", -- needed for LSP keybindings
-    },
     opts = {
       diagnostics = {
         virtual_text = false,
@@ -72,40 +105,37 @@ return {
       -- document_highlight = { enabled = false },
 
       servers = {
-        -- Override default LSP keybindings to use Trouble instead of Snacks
         ["*"] = {
           keys = {
             {
               "gd",
-              "<cmd>Trouble lsp_definitions_filtered toggle auto_jump=true<cr>",
-              desc = "Goto Definition (Trouble)",
+              open_lsp_list({ title = "Definitions", action = vim.lsp.buf.definition, jump = true }),
+              desc = "Goto Definition (Quickfix)",
             },
-            { "gr", "<cmd>Trouble lsp_references_filtered toggle auto_jump=false<cr>", desc = "References (Trouble)" },
+            {
+              "gr",
+              open_lsp_list({
+                title = "References",
+                action = function(list_opts)
+                  vim.lsp.buf.references(nil, list_opts)
+                end,
+              }),
+              desc = "References (Quickfix)",
+            },
             {
               "gI",
-              "<cmd>Trouble lsp_implementations_filtered toggle auto_jump=false<cr>",
-              desc = "Goto Implementation (Trouble)",
+              open_lsp_list({ title = "Implementations", action = vim.lsp.buf.implementation, jump = true }),
+              desc = "Goto Implementation (Quickfix)",
             },
             {
               "gy",
-              "<cmd>Trouble lsp_type_definitions_filtered toggle auto_jump=false<cr>",
-              desc = "Goto Type Definition (Trouble)",
-            },
-            {
-              "<leader>lv",
-              function()
-                if #vim.lsp.get_clients({ name = "vtsls", bufnr = 0 }) > 0 then
-                  vim.cmd("LspStop vtsls")
-                else
-                  vim.cmd("LspStart vtsls")
-                end
-              end,
-              desc = "Toggle vtsls",
+              open_lsp_list({ title = "Type Definitions", action = vim.lsp.buf.type_definition, jump = true }),
+              desc = "Goto Type Definition (Quickfix)",
             },
           },
         },
-        tsgo = false,
-        -- vtsls = false,
+        tsgo = true,
+        vtsls = false,
         -- tsgo = {
         --   keys = {
         --     -- Go to source definition (bypasses .d.ts files)

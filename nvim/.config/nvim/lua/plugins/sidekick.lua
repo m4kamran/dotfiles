@@ -14,12 +14,35 @@ return {
       "<tab>",
       function()
         -- if there is a next edit, jump to it, otherwise apply it if any
-        if not require("sidekick").nes_jump_or_apply() then
-          return "<Tab>" -- fallback to normal tab
+        if require("sidekick").nes_jump_or_apply() then
+          return
+        end
+
+        if #vim.fn.getqflist() > 0 then
+          if not pcall(vim.cmd.cnext) then
+            vim.cmd.cfirst()
+          end
+          return
+        end
+
+        vim.api.nvim_feedkeys(vim.keycode("<C-i>"), "n", false)
+      end,
+      silent = true,
+      desc = "Goto/Apply Next Edit Suggestion",
+    },
+    {
+      "<S-Tab>",
+      function()
+        if #vim.fn.getqflist() == 0 then
+          return
+        end
+
+        if not pcall(vim.cmd.cprev) then
+          vim.cmd.clast()
         end
       end,
-      expr = true,
-      desc = "Goto/Apply Next Edit Suggestion",
+      silent = true,
+      desc = "Previous Quickfix Item",
     },
     {
       "<c-.>",

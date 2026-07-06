@@ -2,6 +2,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = { "Trouble" },
+    enabled = false,
     opts = {
       indent_guides = false, -- show indent guides
       auto_refresh = false, -- don't auto-update as cursor moves
@@ -82,8 +83,8 @@ return {
       win = {
         type = "split",
         relative = "win",
-        position = "right",
-        size = 0.5,
+        position = "bottom",
+        size = 0.4,
       },
     },
     keys = {

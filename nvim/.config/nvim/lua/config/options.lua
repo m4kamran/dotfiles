@@ -11,7 +11,7 @@ vim.opt.cursorline = true
 
 vim.opt.cursorlineopt = "number"
 vim.opt.relativenumber = false
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
@@ -23,8 +23,9 @@ vim.opt.autoread = true
 vim.opt.swapfile = false
 
 vim.opt.signcolumn = "yes"
-vim.opt.foldcolumn = "auto:1"
+-- vim.opt.foldcolumn = "auto:1"
 vim.opt.statuscolumn = "%C %l %s"
+vim.opt.winbar = " %t"
 vim.opt.fillchars:append({
   foldinner = " ",
 })
@@ -69,8 +70,14 @@ vim.api.nvim_create_autocmd("User", {
       group = group,
       pattern = patterns,
       callback = function()
-        local ok = pcall(vim.treesitter.start, nil, "angular")
-        if not ok then
+        -- Query links can exist without the actual parser binary, so check runtime parsers directly.
+        local function has_parser(lang)
+          return #vim.api.nvim_get_runtime_file(("parser/%s.so"):format(lang), true) > 0
+        end
+
+        if has_parser("angular") then
+          pcall(vim.treesitter.start, nil, "angular")
+        elseif has_parser("html") then
           pcall(vim.treesitter.start, nil, "html")
         end
       end,
